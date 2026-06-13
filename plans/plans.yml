@@ -1,0 +1,26 @@
+name: bioRxiv API Plans
+description: bioRxiv provides free and open access to its REST API with no subscription tiers or paid plans. The API is publicly accessible without authentication and is intended for academic research, text and data mining, and programmatic access to preprint metadata.
+plans:
+  - name: Public Access
+    description: Free, open, and unauthenticated access to the bioRxiv REST API for all users. No registration required. Suitable for researchers, developers, and institutions needing programmatic access to preprint metadata and publication information.
+    url: https://api.biorxiv.org/
+    spec: ""
+    auth: none
+    authentication:
+      - type: None
+        description: No API key, token, or registration required. The API is publicly accessible.
+    rate_limits:
+      - description: No formally documented rate limits. Responsible use and reasonable request volumes are expected per bioRxiv terms of use.
+    features:
+      - Content detail retrieval by date range or DOI
+      - Published preprint information
+      - Publisher-filtered article access
+      - Funder-filtered content (via ROR ID)
+      - Monthly and yearly submission statistics
+      - Abstract views, full-text views, and PDF download usage stats
+      - JSON, XML (OAI-PMH), HTML, and CSV output formats
+      - Pagination support via cursor parameter
+      - bioRxiv and medRxiv server coverage
+    price: Free
+    price_currency: USD
+    price_unit: ""

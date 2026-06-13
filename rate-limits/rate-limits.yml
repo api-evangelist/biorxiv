@@ -1,0 +1,18 @@
+name: bioRxiv API Rate Limits
+description: bioRxiv does not publish formal rate limits for its REST API. The API is freely accessible without authentication. Users are expected to make reasonable requests and follow responsible use guidelines consistent with bioRxiv's terms of service. Heavy automated crawling should be avoided and requests should be spaced appropriately.
+rate_limits:
+  - plan: Public Access
+    documented: false
+    requests_per_second: ""
+    requests_per_minute: ""
+    requests_per_hour: ""
+    requests_per_day: ""
+    concurrent_connections: ""
+    notes: No rate limits are formally documented. Responsible use is expected. Automated large-scale crawling should be paced appropriately. bioRxiv recommends using the API rather than scraping HTML pages for bulk data access.
+    headers: []
+    pagination:
+      type: cursor
+      parameter: cursor
+      default: 0
+      page_size: 30
+      description: Results are paginated with a default page size of 30 records. Use the cursor parameter (integer) to page through results.

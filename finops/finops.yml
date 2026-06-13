@@ -1,0 +1,23 @@
+name: bioRxiv API FinOps
+description: bioRxiv is a free preprint server operated by Cold Spring Harbor Laboratory as a not-for-profit public service. The REST API is provided at no cost with no usage-based billing, subscription fees, or metered pricing. There are no financial considerations for API consumers beyond ensuring responsible use.
+cost_model: free
+currency: USD
+pricing:
+  - tier: Public Access
+    monthly_cost: 0
+    annual_cost: 0
+    per_request_cost: 0
+    per_record_cost: 0
+    description: Completely free API access. No registration, no API key, no payment required.
+notes:
+  - bioRxiv is funded as a public scientific infrastructure by Cold Spring Harbor Laboratory and through grants from philanthropic and institutional sources.
+  - The API is free to all users globally with no quota-based pricing.
+  - No commercial tiers or paid enterprise plans exist.
+  - Text and data mining (TDM) access for bulk research use is supported under open licenses (CC0, CC BY, CC BY-NC-ND).
+  - Costs to the organization consuming this API are limited to egress bandwidth and compute for processing responses.
+optimization_tips:
+  - Use date-range queries to retrieve only the records needed rather than pulling all content repeatedly.
+  - Leverage the cursor parameter for pagination to avoid redundant requests.
+  - Cache responses locally when performing repeated analyses of the same date ranges.
+  - Use the JSON format for most efficient programmatic processing.
+  - Prefer the /details/ endpoint with specific DOIs when retrieving individual papers to minimize data transfer.
