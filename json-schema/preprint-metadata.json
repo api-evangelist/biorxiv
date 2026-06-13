@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/biorxiv/main/json-schema/preprint-metadata.json",
+  "title": "PreprintMetadata",
+  "description": "Metadata for a single preprint from bioRxiv or medRxiv",
+  "type": "object",
+  "properties": {
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier for the preprint",
+      "pattern": "^10\\.\\d{4,}/.*$",
+      "example": "10.1101/339747"
+    },
+    "title": {
+      "type": "string",
+      "description": "Title of the preprint",
+      "minLength": 1
+    },
+    "authors": {
+      "type": "string",
+      "description": "Semicolon-separated list of authors in 'Last, First' format",
+      "example": "Smith, John; Doe, Jane"
+    },
+    "author_corresponding": {
+      "type": "string",
+      "description": "Name of the corresponding author"
+    },
+    "author_corresponding_institution": {
+      "type": "string",
+      "description": "Institution of the corresponding author"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the preprint was posted (YYYY-MM-DD)",
+      "example": "2021-06-01"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version number of the preprint (1-based)",
+      "pattern": "^[0-9]+$",
+      "example": "1"
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of submission",
+      "enum": [
+        "new results",
+        "confirmatory results",
+        "contradictory results",
+        "null results",
+        "tools and resources",
+        "methods",
+        "review article",
+        "meta-analysis"
+      ]
+    },
+    "license": {
+      "type": "string",
+      "description": "License applied to the preprint",
+      "enum": [
+        "cc_by",
+        "cc_by_nc",
+        "cc_by_nd",
+        "cc_by_nc_nd",
+        "cc_no_reuse",
+        "cc0"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "description": "Subject category of the preprint",
+      "example": "neuroscience"
+    },
+    "jatsxml": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the JATS XML full text of the preprint"
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Abstract text of the preprint"
+    },
+    "published": {
+      "type": "string",
+      "description": "Published DOI if the preprint has been published, 'NA' if not yet published",
+      "example": "NA"
+    },
+    "server": {
+      "type": "string",
+      "description": "Server hosting the preprint",
+      "enum": ["biorxiv", "medrxiv"]
+    }
+  },
+  "required": ["doi", "title", "date", "category", "server"]
+}

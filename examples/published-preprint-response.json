@@ -1,0 +1,41 @@
+{
+  "messages": [
+    {
+      "status": "ok",
+      "interval": "2021-06-01/2021-06-15",
+      "cursor": "0",
+      "count": 100,
+      "total": 1423
+    }
+  ],
+  "collection": [
+    {
+      "biorxiv_doi": "10.1101/2020.09.15.297440",
+      "published_doi": "10.1016/j.cell.2021.05.001",
+      "preprint_title": "Structural basis for SARS-CoV-2 entry into human cells",
+      "preprint_authors": "Zhang, Wei; Liu, Mei; Chen, Xiao; Wang, Fang",
+      "preprint_author_corresponding": "Zhang, Wei",
+      "preprint_author_corresponding_institution": "Peking University",
+      "preprint_category": "microbiology",
+      "preprint_date": "2020-09-15",
+      "preprint_doi": "10.1101/2020.09.15.297440",
+      "published_date": "2021-06-03",
+      "published_citation_count": 287,
+      "preprint_platform": "bioRxiv"
+    },
+    {
+      "biorxiv_doi": "10.1101/2020.11.22.393009",
+      "published_doi": "10.1038/s41586-021-03512-4",
+      "preprint_title": "mRNA vaccine-elicited antibodies to SARS-CoV-2 and circulating variants",
+      "preprint_authors": "Brown, Amy C; Davis, Michael J; Taylor, Rachel S",
+      "preprint_author_corresponding": "Brown, Amy C",
+      "preprint_author_corresponding_institution": "Harvard Medical School",
+      "preprint_category": "immunology",
+      "preprint_date": "2020-11-22",
+      "preprint_doi": "10.1101/2020.11.22.393009",
+      "published_date": "2021-06-07",
+      "published_citation_count": 512,
+      "preprint_platform": "bioRxiv"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "messages": [
+    {
+      "status": "ok",
+      "interval": "2021-06-01/2021-06-15",
+      "cursor": "0",
+      "count": 30,
+      "total": 2847
+    }
+  ],
+  "collection": [
+    {
+      "doi": "10.1101/2021.06.01.446700",
+      "title": "Single-cell transcriptomics reveals cell-type specific diversification in human cortex",
+      "authors": "Smith, John A; Johnson, Mary B; Williams, Robert C",
+      "author_corresponding": "Smith, John A",
+      "author_corresponding_institution": "University of California, San Francisco",
+      "date": "2021-06-01",
+      "version": "1",
+      "type": "new results",
+      "license": "cc_by",
+      "category": "neuroscience",
+      "jatsxml": "https://www.biorxiv.org/content/early/2021/06/01/2021.06.01.446700.source.xml",
+      "abstract": "Understanding the cellular diversity of the human cortex is fundamental to neuroscience. Here we present single-cell RNA sequencing data from 50,000 cells across six cortical regions, identifying 72 distinct cell types including previously uncharacterized neuronal subtypes...",
+      "published": "NA",
+      "server": "biorxiv"
+    },
+    {
+      "doi": "10.1101/2021.06.02.447012",
+      "title": "CRISPR-Cas9 mediated correction of DMD mutation restores dystrophin expression in patient-derived myoblasts",
+      "authors": "Lee, Sarah K; Kim, David H; Park, Jennifer L",
+      "author_corresponding": "Lee, Sarah K",
+      "author_corresponding_institution": "Stanford University School of Medicine",
+      "date": "2021-06-02",
+      "version": "1",
+      "type": "new results",
+      "license": "cc_by_nc",
+      "category": "cell biology",
+      "jatsxml": "https://www.biorxiv.org/content/early/2021/06/02/2021.06.02.447012.source.xml",
+      "abstract": "Duchenne muscular dystrophy (DMD) is caused by mutations in the dystrophin gene. We applied CRISPR-Cas9 gene editing to correct a common exon 51 deletion in patient-derived myoblasts, achieving 78% correction efficiency and full restoration of dystrophin protein expression...",
+      "published": "10.1038/s41591-021-01532-z",
+      "server": "biorxiv"
+    }
+  ]
+}

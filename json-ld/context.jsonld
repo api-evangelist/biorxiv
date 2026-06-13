@@ -1,0 +1,142 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "biorxiv": "https://api.biorxiv.org/vocab/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "PreprintMetadata": "biorxiv:PreprintMetadata",
+    "PublishedPreprintMetadata": "biorxiv:PublishedPreprintMetadata",
+    "SummaryStatistics": "biorxiv:SummaryStatistics",
+    "UsageStatistics": "biorxiv:UsageStatistics",
+
+    "doi": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "title": "schema:name",
+    "abstract": "schema:abstract",
+    "authors": {
+      "@id": "schema:author",
+      "@type": "xsd:string"
+    },
+    "author_corresponding": "biorxiv:correspondingAuthor",
+    "author_corresponding_institution": {
+      "@id": "schema:affiliation",
+      "@type": "schema:Organization"
+    },
+    "date": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:date"
+    },
+    "version": "schema:version",
+    "type": "schema:additionalType",
+    "license": {
+      "@id": "schema:license",
+      "@type": "@id"
+    },
+    "category": "schema:about",
+    "jatsxml": {
+      "@id": "schema:encoding",
+      "@type": "@id"
+    },
+    "published": {
+      "@id": "schema:sameAs",
+      "@type": "@id"
+    },
+    "server": "biorxiv:server",
+
+    "biorxiv_doi": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "published_doi": {
+      "@id": "schema:sameAs",
+      "@type": "@id"
+    },
+    "preprint_title": "schema:name",
+    "preprint_authors": "schema:author",
+    "preprint_author_corresponding": "biorxiv:correspondingAuthor",
+    "preprint_author_corresponding_institution": "schema:affiliation",
+    "preprint_category": "schema:about",
+    "preprint_date": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:date"
+    },
+    "preprint_doi": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "published_date": {
+      "@id": "schema:datePublished",
+      "@type": "xsd:date"
+    },
+    "published_citation_count": {
+      "@id": "schema:citation",
+      "@type": "xsd:integer"
+    },
+    "preprint_platform": "biorxiv:platform",
+
+    "month": {
+      "@id": "schema:temporalCoverage",
+      "@type": "xsd:string"
+    },
+    "new_papers": {
+      "@id": "biorxiv:newPapers",
+      "@type": "xsd:integer"
+    },
+    "revised_papers": {
+      "@id": "biorxiv:revisedPapers",
+      "@type": "xsd:integer"
+    },
+    "all_papers": {
+      "@id": "biorxiv:totalPapers",
+      "@type": "xsd:integer"
+    },
+    "new_papers_cumulative": {
+      "@id": "biorxiv:newPapersCumulative",
+      "@type": "xsd:integer"
+    },
+    "revised_papers_cumulative": {
+      "@id": "biorxiv:revisedPapersCumulative",
+      "@type": "xsd:integer"
+    },
+    "all_papers_cumulative": {
+      "@id": "biorxiv:totalPapersCumulative",
+      "@type": "xsd:integer"
+    },
+
+    "abstract_views": {
+      "@id": "biorxiv:abstractViews",
+      "@type": "xsd:integer"
+    },
+    "full_text_views": {
+      "@id": "biorxiv:fullTextViews",
+      "@type": "xsd:integer"
+    },
+    "pdf_downloads": {
+      "@id": "biorxiv:pdfDownloads",
+      "@type": "xsd:integer"
+    },
+    "abstract_views_cumulative": {
+      "@id": "biorxiv:abstractViewsCumulative",
+      "@type": "xsd:integer"
+    },
+    "full_text_views_cumulative": {
+      "@id": "biorxiv:fullTextViewsCumulative",
+      "@type": "xsd:integer"
+    },
+    "pdf_downloads_cumulative": {
+      "@id": "biorxiv:pdfDownloadsCumulative",
+      "@type": "xsd:integer"
+    },
+
+    "messages": "biorxiv:messages",
+    "collection": "biorxiv:collection",
+    "status": "schema:status",
+    "interval": "biorxiv:interval",
+    "cursor": "biorxiv:cursor",
+    "count": "schema:numberOfItems",
+    "total": "biorxiv:totalResults"
+  }
+}

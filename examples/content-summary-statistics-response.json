@@ -1,0 +1,31 @@
+{
+  "messages": [
+    {
+      "status": "ok",
+      "interval": "m",
+      "cursor": "0",
+      "count": 12,
+      "total": 100
+    }
+  ],
+  "collection": [
+    {
+      "month": "2021-06",
+      "new_papers": 5234,
+      "revised_papers": 1876,
+      "all_papers": 7110,
+      "new_papers_cumulative": 187423,
+      "revised_papers_cumulative": 67891,
+      "all_papers_cumulative": 255314
+    },
+    {
+      "month": "2021-07",
+      "new_papers": 4987,
+      "revised_papers": 1754,
+      "all_papers": 6741,
+      "new_papers_cumulative": 192410,
+      "revised_papers_cumulative": 69645,
+      "all_papers_cumulative": 262055
+    }
+  ]
+}

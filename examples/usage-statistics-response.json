@@ -1,0 +1,31 @@
+{
+  "messages": [
+    {
+      "status": "ok",
+      "interval": "m",
+      "cursor": "0",
+      "count": 12,
+      "total": 100
+    }
+  ],
+  "collection": [
+    {
+      "month": "2021-06",
+      "abstract_views": 12453821,
+      "full_text_views": 4123456,
+      "pdf_downloads": 2987654,
+      "abstract_views_cumulative": 1245382100,
+      "full_text_views_cumulative": 412345600,
+      "pdf_downloads_cumulative": 298765400
+    },
+    {
+      "month": "2021-07",
+      "abstract_views": 11987654,
+      "full_text_views": 3987123,
+      "pdf_downloads": 2876543,
+      "abstract_views_cumulative": 1257369754,
+      "full_text_views_cumulative": 416332723,
+      "pdf_downloads_cumulative": 301641943
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/biorxiv/main/json-schema/published-preprint.json",
+  "title": "PublishedPreprintMetadata",
+  "description": "Metadata for a preprint that has been published in a peer-reviewed journal",
+  "type": "object",
+  "properties": {
+    "biorxiv_doi": {
+      "type": "string",
+      "description": "DOI of the bioRxiv or medRxiv preprint",
+      "pattern": "^10\\.\\d{4,}/.*$",
+      "example": "10.1101/339747"
+    },
+    "published_doi": {
+      "type": "string",
+      "description": "DOI of the corresponding published journal article",
+      "pattern": "^10\\.\\d{4,}/.*$",
+      "example": "10.1016/j.cell.2021.05.001"
+    },
+    "preprint_title": {
+      "type": "string",
+      "description": "Title of the preprint"
+    },
+    "preprint_authors": {
+      "type": "string",
+      "description": "Semicolon-separated list of authors"
+    },
+    "preprint_author_corresponding": {
+      "type": "string",
+      "description": "Corresponding author name"
+    },
+    "preprint_author_corresponding_institution": {
+      "type": "string",
+      "description": "Institution of the corresponding author"
+    },
+    "preprint_category": {
+      "type": "string",
+      "description": "Subject category of the preprint"
+    },
+    "preprint_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the preprint was posted"
+    },
+    "preprint_doi": {
+      "type": "string",
+      "description": "DOI of the preprint (same as biorxiv_doi)",
+      "pattern": "^10\\.\\d{4,}/.*$"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the article was published in a journal"
+    },
+    "published_citation_count": {
+      "type": "integer",
+      "description": "Number of citations received by the published article",
+      "minimum": 0
+    },
+    "preprint_platform": {
+      "type": "string",
+      "description": "Platform where the preprint was posted",
+      "enum": ["bioRxiv", "medRxiv"]
+    }
+  },
+  "required": ["biorxiv_doi", "published_doi", "preprint_title", "preprint_date", "published_date"]
+}

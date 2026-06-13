@@ -1,0 +1,147 @@
+title: bioRxiv API Vocabulary
+description: Domain vocabulary and terminology for the bioRxiv REST API
+url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/vocabulary/vocabulary.yml
+version: "1.0.0"
+
+terms:
+
+  - term: preprint
+    definition: >
+      A version of a scientific manuscript posted publicly before formal peer review.
+      bioRxiv hosts preprints in biology and life sciences; medRxiv hosts preprints
+      in health sciences and medicine.
+    related: ["manuscript", "server", "version"]
+
+  - term: DOI
+    definition: >
+      Digital Object Identifier. A persistent identifier assigned to a preprint or
+      published article. bioRxiv DOIs follow the pattern 10.1101/XXXXXXX. Published
+      article DOIs use the journal publisher's prefix.
+    related: ["biorxiv_doi", "published_doi"]
+
+  - term: server
+    definition: >
+      The preprint server hosting the content. Valid values are 'biorxiv' for
+      biological sciences preprints and 'medrxiv' for health and medical sciences
+      preprints.
+    values:
+      - biorxiv: Cold Spring Harbor Laboratory preprint server for biology
+      - medrxiv: Preprint server for health sciences
+
+  - term: interval
+    definition: >
+      A time range parameter used to filter API results. Can be specified as:
+      a date range (YYYY-MM-DD/YYYY-MM-DD), a count of recent papers (integer),
+      or a number of days ago (integer followed by 'd', e.g. '7d').
+    formats:
+      - "YYYY-MM-DD/YYYY-MM-DD: date range"
+      - "N: N most recent papers"
+      - "Nd: papers from N days ago to present"
+
+  - term: cursor
+    definition: >
+      Zero-based pagination offset indicating the starting position in the result
+      set. Increment by the page size to retrieve subsequent pages.
+
+  - term: category
+    definition: >
+      Subject category classifying the research topic of a preprint.
+      Used for filtering content in details and funder endpoints.
+    examples:
+      - neuroscience
+      - cell biology
+      - microbiology
+      - immunology
+      - biochemistry
+      - genetics
+      - bioinformatics
+      - genomics
+      - evolutionary biology
+      - ecology
+      - cancer biology
+      - developmental biology
+      - molecular biology
+      - pharmacology and toxicology
+      - physiology
+      - plant biology
+      - zoology
+      - systems biology
+      - synthetic biology
+      - biophysics
+
+  - term: version
+    definition: >
+      Integer version number of a preprint, starting at 1 for the first
+      submission. Authors may post revised versions which increment this number.
+
+  - term: type
+    definition: >
+      Classification of the type of scientific result reported in the preprint.
+    values:
+      - new results: Original research findings not previously published
+      - confirmatory results: Replication of previously published findings
+      - contradictory results: Results that contradict previous publications
+      - null results: Experiments that did not produce significant results
+      - tools and resources: Software, datasets, or methodological resources
+      - methods: Novel experimental or analytical methods
+      - review article: Comprehensive review of existing literature
+      - meta-analysis: Statistical synthesis of multiple studies
+
+  - term: license
+    definition: >
+      Creative Commons license applied to the preprint governing reuse rights.
+    values:
+      - cc_by: Attribution required; most permissive license
+      - cc_by_nc: Attribution, non-commercial use only
+      - cc_by_nd: Attribution, no derivatives
+      - cc_by_nc_nd: Attribution, non-commercial, no derivatives
+      - cc_no_reuse: No reuse permitted without permission
+      - cc0: Public domain dedication; no rights reserved
+
+  - term: ROR ID
+    definition: >
+      Research Organization Registry identifier. A 9-character alphanumeric
+      identifier for research funding organizations, used by the funder endpoint
+      to filter preprints by funding source.
+    example: "021nxhr62 (National Institutes of Health)"
+    related: ["funder"]
+
+  - term: publisher prefix
+    definition: >
+      The DOI prefix assigned to a publisher (e.g. 10.15252 for EMBO Press).
+      Used by the publisher endpoint to retrieve articles from a specific journal
+      publisher that were originally posted as bioRxiv preprints.
+
+  - term: JATS XML
+    definition: >
+      Journal Article Tag Suite XML. A structured XML format for scientific
+      articles. The jatsxml field in preprint metadata provides a URL to the
+      full text of the preprint in JATS XML format.
+
+  - term: OAI-PMH
+    definition: >
+      Open Archives Initiative Protocol for Metadata Harvesting. An XML-based
+      protocol returned when the 'xml' format parameter is used with the
+      content details endpoint. Used by institutional repositories and indexing
+      services for bulk metadata harvesting.
+
+  - term: abstract_views
+    definition: >
+      Count of visits to the abstract/landing page of a preprint. Used in
+      usage statistics to measure reach and interest in preprint content.
+
+  - term: full_text_views
+    definition: >
+      Count of HTML full-text page views for a preprint. Distinct from PDF
+      downloads, this measures online reading of the full article content.
+
+  - term: pdf_downloads
+    definition: >
+      Count of PDF file downloads for a preprint. Together with abstract_views
+      and full_text_views, provides a comprehensive picture of content engagement.
+
+  - term: cumulative
+    definition: >
+      Running total from the beginning of the server's operation through the
+      current time period. Fields ending in _cumulative represent all-time totals
+      rather than the count for a single period.

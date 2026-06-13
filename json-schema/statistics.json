@@ -1,0 +1,126 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/biorxiv/main/json-schema/statistics.json",
+  "title": "StatisticsSchemas",
+  "description": "JSON schemas for bioRxiv statistics endpoints",
+  "definitions": {
+    "SummaryStatisticsEntry": {
+      "title": "SummaryStatisticsEntry",
+      "description": "Content summary statistics for a single time period",
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Month (YYYY-MM) or year (YYYY) of the statistics",
+          "example": "2021-06"
+        },
+        "new_papers": {
+          "type": "integer",
+          "description": "Number of new papers posted in the period",
+          "minimum": 0
+        },
+        "revised_papers": {
+          "type": "integer",
+          "description": "Number of revised papers posted in the period",
+          "minimum": 0
+        },
+        "all_papers": {
+          "type": "integer",
+          "description": "Total papers posted (new + revised)",
+          "minimum": 0
+        },
+        "new_papers_cumulative": {
+          "type": "integer",
+          "description": "Cumulative total of new papers through this period",
+          "minimum": 0
+        },
+        "revised_papers_cumulative": {
+          "type": "integer",
+          "description": "Cumulative total of revised papers through this period",
+          "minimum": 0
+        },
+        "all_papers_cumulative": {
+          "type": "integer",
+          "description": "Cumulative total of all papers through this period",
+          "minimum": 0
+        }
+      },
+      "required": ["month", "new_papers", "revised_papers", "all_papers"]
+    },
+    "UsageStatisticsEntry": {
+      "title": "UsageStatisticsEntry",
+      "description": "Usage statistics for a single time period",
+      "type": "object",
+      "properties": {
+        "month": {
+          "type": "string",
+          "description": "Month (YYYY-MM) or year (YYYY) of the statistics",
+          "example": "2021-06"
+        },
+        "abstract_views": {
+          "type": "integer",
+          "description": "Number of abstract page views in the period",
+          "minimum": 0
+        },
+        "full_text_views": {
+          "type": "integer",
+          "description": "Number of full-text HTML views in the period",
+          "minimum": 0
+        },
+        "pdf_downloads": {
+          "type": "integer",
+          "description": "Number of PDF downloads in the period",
+          "minimum": 0
+        },
+        "abstract_views_cumulative": {
+          "type": "integer",
+          "description": "Cumulative abstract views through this period",
+          "minimum": 0
+        },
+        "full_text_views_cumulative": {
+          "type": "integer",
+          "description": "Cumulative full-text views through this period",
+          "minimum": 0
+        },
+        "pdf_downloads_cumulative": {
+          "type": "integer",
+          "description": "Cumulative PDF downloads through this period",
+          "minimum": 0
+        }
+      },
+      "required": ["month", "abstract_views", "full_text_views", "pdf_downloads"]
+    },
+    "ResponseMessage": {
+      "title": "ResponseMessage",
+      "description": "Status message included with API responses",
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Request status",
+          "enum": ["ok", "error"]
+        },
+        "interval": {
+          "type": "string",
+          "description": "The interval queried"
+        },
+        "cursor": {
+          "type": "integer",
+          "description": "Current pagination cursor position",
+          "minimum": 0
+        },
+        "count": {
+          "type": "integer",
+          "description": "Number of results in this response",
+          "minimum": 0
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total number of matching results",
+          "minimum": 0
+        }
+      },
+      "required": ["status"]
+    }
+  }
+}
