@@ -1,6 +1,6 @@
 name: bioRxiv
 description: Cold Spring Harbor Laboratory preprint server for biology providing a REST API for searching and accessing preprint metadata, full text, and category-filtered biological research. The API enables programmatic access to preprint and published article metadata from bioRxiv and medRxiv repositories.
-image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/apis.yml
 version: "0.19"
 created: "2026-06-13"
@@ -15,7 +15,7 @@ tags:
 apis:
   - name: bioRxiv REST API
     description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.biorxiv.org/
     baseURL: https://api.biorxiv.org
     tags:
