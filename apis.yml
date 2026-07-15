@@ -40,6 +40,8 @@ apis:
         url: https://www.biorxiv.org/about-biorxiv
         email: ""
 common:
+  - type: AgenticAccess
+    url: agentic-access/biorxiv-agentic-access.yml
   - type: DomainSecurity
     url: security/biorxiv-domain-security.yml
   - type: Website
