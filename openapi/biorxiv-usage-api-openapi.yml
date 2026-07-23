@@ -1,0 +1,137 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details Usage API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Usage
+paths:
+  /usage/{interval}/{server}/{format}:
+    get:
+      operationId: getUsageSummaryStatistics
+      summary: Get usage summary statistics
+      description: 'Returns usage statistics for bioRxiv or medRxiv including abstract views, full-text views, and PDF downloads, aggregated monthly or yearly.
+
+        '
+      parameters:
+      - name: interval
+        in: path
+        required: true
+        description: Aggregation interval (m for monthly, y for yearly)
+        schema:
+          type: string
+          enum:
+          - m
+          - y
+        example: m
+      - name: server
+        in: path
+        required: true
+        description: Preprint server to query
+        schema:
+          type: string
+          enum:
+          - biorxiv
+          - medrxiv
+        example: biorxiv
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
+        example: json
+      responses:
+        '200':
+          description: Successful response with usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsageStatisticsResponse'
+            text/csv:
+              schema:
+                type: string
+      tags:
+      - Usage
+components:
+  schemas:
+    UsageStatisticsResponse:
+      type: object
+      description: Response from usage summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageStatisticsEntry'
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    UsageStatisticsEntry:
+      type: object
+      description: Usage statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: 2021-06
+        abstract_views:
+          type: integer
+          description: Number of abstract page views
+          example: 9823451
+        full_text_views:
+          type: integer
+          description: Number of full-text HTML views
+          example: 3241876
+        pdf_downloads:
+          type: integer
+          description: Number of PDF downloads
+          example: 2156432
+        abstract_views_cumulative:
+          type: integer
+          description: Cumulative abstract views
+        full_text_views_cumulative:
+          type: integer
+          description: Cumulative full-text views
+        pdf_downloads_cumulative:
+          type: integer
+          description: Cumulative PDF downloads

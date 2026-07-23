@@ -1,0 +1,302 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Details
+paths:
+  /details/{server}/{interval}/{cursor}/{format}:
+    get:
+      operationId: getContentDetails
+      summary: Get preprint content details by date interval
+      description: 'Returns metadata for up to 30 preprints from bioRxiv or medRxiv within a specified date range or recent N papers. Supports optional subject category filtering.
+
+        '
+      parameters:
+      - name: server
+        in: path
+        required: true
+        description: Preprint server to query
+        schema:
+          type: string
+          enum:
+          - biorxiv
+          - medrxiv
+        example: biorxiv
+      - name: interval
+        in: path
+        required: true
+        description: 'Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)
+
+          '
+        schema:
+          type: string
+        example: 2021-06-01/2021-06-15
+      - name: cursor
+        in: path
+        required: true
+        description: Pagination cursor (0-based start position)
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - html
+          default: json
+        example: json
+      - name: category
+        in: query
+        required: false
+        description: Optional subject category filter (URL-encoded or underscore-separated)
+        schema:
+          type: string
+        example: neuroscience
+      responses:
+        '200':
+          description: Successful response with preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDetailsResponse'
+        '400':
+          description: Bad request - invalid parameters
+        '404':
+          description: No results found
+      tags:
+      - Details
+  /details/{server}/{doi}/na/{format}:
+    get:
+      operationId: getContentDetailsByDOI
+      summary: Get preprint content details by DOI
+      description: 'Returns metadata for a specific preprint identified by its DOI from bioRxiv or medRxiv.
+
+        '
+      parameters:
+      - name: server
+        in: path
+        required: true
+        description: Preprint server to query
+        schema:
+          type: string
+          enum:
+          - biorxiv
+          - medrxiv
+        example: biorxiv
+      - name: doi
+        in: path
+        required: true
+        description: DOI of the preprint (e.g. 10.1101/339747)
+        schema:
+          type: string
+        example: 10.1101/339747
+      - name: na
+        in: path
+        required: true
+        description: Literal "na" placeholder for cursor position when querying by DOI
+        schema:
+          type: string
+          enum:
+          - na
+        example: na
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - html
+          default: json
+        example: json
+      responses:
+        '200':
+          description: Successful response with preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentDetailsResponse'
+        '404':
+          description: DOI not found
+      tags:
+      - Details
+components:
+  schemas:
+    ContentDetailsResponse:
+      type: object
+      description: Response from content details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreprintMetadata'
+    PreprintMetadata:
+      type: object
+      description: Metadata for a single preprint
+      properties:
+        doi:
+          type: string
+          description: Digital Object Identifier for the preprint
+          example: 10.1101/339747
+        title:
+          type: string
+          description: Title of the preprint
+          example: Example Biology Preprint Title
+        authors:
+          type: string
+          description: Semicolon-separated list of authors
+          example: Smith, John; Doe, Jane
+        author_corresponding:
+          type: string
+          description: Corresponding author name
+          example: Smith, John
+        author_corresponding_institution:
+          type: string
+          description: Institution of corresponding author
+          example: University of Example
+        date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+          example: '2021-06-01'
+        version:
+          type: string
+          description: Version number of the preprint
+          example: '1'
+        type:
+          type: string
+          description: Type of submission (new result, confirmatory result, etc.)
+          example: new results
+        license:
+          type: string
+          description: License type
+          example: cc_by
+        category:
+          type: string
+          description: Subject category
+          example: neuroscience
+        jatsxml:
+          type: string
+          format: uri
+          description: URL to JATS XML full text
+        abstract:
+          type: string
+          description: Abstract of the preprint
+        published:
+          type: string
+          description: Published DOI if the preprint has been published, "NA" if not
+          example: NA
+        server:
+          type: string
+          description: Server hosting the preprint (biorxiv or medrxiv)
+          example: biorxiv
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    PreprintMetadata_2:
+      type: object
+      description: Metadata for a single preprint
+      properties:
+        doi:
+          type: string
+          description: Digital Object Identifier for the preprint
+          example: 10.1101/339747
+        title:
+          type: string
+          description: Title of the preprint
+          example: Example Biology Preprint Title
+        authors:
+          type: string
+          description: Semicolon-separated list of authors
+          example: Smith, John; Doe, Jane
+        author_corresponding:
+          type: string
+          description: Corresponding author name
+          example: Smith, John
+        author_corresponding_institution:
+          type: string
+          description: Institution of corresponding author
+          example: University of Example
+        date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+          example: '2021-06-01'
+        version:
+          type: string
+          description: Version number of the preprint
+          example: '1'
+        type:
+          type: string
+          description: Type of submission (new result, confirmatory result, etc.)
+          example: new results
+        license:
+          type: string
+          description: License type
+          example: cc_by
+        category:
+          type: string
+          description: Subject category
+          example: neuroscience
+        jatsxml:
+          type: string
+          format: uri
+          description: URL to JATS XML full text
+        abstract:
+          type: string
+          description: Abstract of the preprint
+        published:
+          type: string
+          description: Published DOI if the preprint has been published, "NA" if not
+          example: 10.1016/j.cell.2021.05.001
+        server:
+          type: string
+          description: Server hosting the preprint (biorxiv or medrxiv)
+          example: biorxiv

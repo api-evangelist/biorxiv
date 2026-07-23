@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details Pubs API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Pubs
+paths:
+  /pubs/{server}/{interval}/{cursor}:
+    get:
+      operationId: getPublishedPreprintDetails
+      summary: Get published preprint details by interval
+      description: 'Returns metadata for up to 100 published preprints from bioRxiv or medRxiv within a specified date range. Includes both preprint and publication metadata.
+
+        '
+      parameters:
+      - name: server
+        in: path
+        required: true
+        description: Preprint server to query
+        schema:
+          type: string
+          enum:
+          - biorxiv
+          - medrxiv
+        example: biorxiv
+      - name: interval
+        in: path
+        required: true
+        description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+        schema:
+          type: string
+        example: 2021-06-01/2021-06-15
+      - name: cursor
+        in: path
+        required: true
+        description: Pagination cursor (0-based start position)
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      - name: format
+        in: query
+        required: false
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+      responses:
+        '200':
+          description: Successful response with published preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishedPreprintResponse'
+        '400':
+          description: Bad request - invalid parameters
+      tags:
+      - Pubs
+  /pubs/{server}/{doi}/na/{format}:
+    get:
+      operationId: getPublishedPreprintByDOI
+      summary: Get published preprint details by DOI
+      description: 'Returns metadata for a specific published preprint identified by its DOI from bioRxiv or medRxiv.
+
+        '
+      parameters:
+      - name: server
+        in: path
+        required: true
+        description: Preprint server to query
+        schema:
+          type: string
+          enum:
+          - biorxiv
+          - medrxiv
+        example: biorxiv
+      - name: doi
+        in: path
+        required: true
+        description: DOI of the preprint
+        schema:
+          type: string
+        example: 10.1101/339747
+      - name: na
+        in: path
+        required: true
+        description: Literal "na" placeholder
+        schema:
+          type: string
+          enum:
+          - na
+        example: na
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          default: json
+        example: json
+      responses:
+        '200':
+          description: Successful response with published preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishedPreprintResponse'
+        '404':
+          description: DOI not found
+      tags:
+      - Pubs
+components:
+  schemas:
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    PublishedPreprintMetadata:
+      type: object
+      description: Metadata for a published preprint
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv/medRxiv preprint
+          example: 10.1101/339747
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+          example: 10.1016/j.cell.2021.05.001
+        preprint_title:
+          type: string
+          description: Title of the preprint
+        preprint_authors:
+          type: string
+          description: Authors of the preprint
+        preprint_author_corresponding:
+          type: string
+          description: Corresponding author
+        preprint_author_corresponding_institution:
+          type: string
+          description: Institution of corresponding author
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        preprint_doi:
+          type: string
+          description: Preprint DOI (alias of biorxiv_doi)
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
+        published_citation_count:
+          type: integer
+          description: Number of citations the published article has received
+        preprint_platform:
+          type: string
+          description: Platform where preprint was posted (bioRxiv or medRxiv)
+    PublishedPreprintResponse:
+      type: object
+      description: Response from published preprint details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedPreprintMetadata'

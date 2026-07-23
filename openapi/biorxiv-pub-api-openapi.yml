@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details Pub API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Pub
+paths:
+  /pub/{interval}/{cursor}/{format}:
+    get:
+      operationId: getPublishedArticleDetails
+      summary: Get published article details (bioRxiv only)
+      description: 'Returns metadata for up to 100 articles published from bioRxiv preprints within a specified date range. Includes both preprint and published DOIs.
+
+        '
+      parameters:
+      - name: interval
+        in: path
+        required: true
+        description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+        schema:
+          type: string
+        example: 2021-06-01/2021-06-15
+      - name: cursor
+        in: path
+        required: true
+        description: Pagination cursor (0-based start position)
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
+        example: json
+      responses:
+        '200':
+          description: Successful response with published article metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishedArticleResponse'
+            text/csv:
+              schema:
+                type: string
+      tags:
+      - Pub
+components:
+  schemas:
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    PublishedArticleResponse:
+      type: object
+      description: Response from published article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedArticleMetadata'
+    PublishedArticleMetadata:
+      type: object
+      description: Metadata for a published article derived from a bioRxiv preprint
+      properties:
+        preprint_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+          example: 10.1101/339747
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+          example: 10.1016/j.cell.2021.05.001
+        title:
+          type: string
+          description: Title of the article
+        category:
+          type: string
+          description: Subject category
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published

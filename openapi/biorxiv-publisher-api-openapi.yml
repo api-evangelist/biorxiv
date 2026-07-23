@@ -1,0 +1,121 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details Publisher API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Publisher
+paths:
+  /publisher/{publisherPrefix}/{interval}/{cursor}:
+    get:
+      operationId: getPublisherArticleDetails
+      summary: Get publisher article details
+      description: 'Returns metadata for up to 100 articles from a specific publisher identified by their DOI prefix within a given date range.
+
+        '
+      parameters:
+      - name: publisherPrefix
+        in: path
+        required: true
+        description: Publisher DOI prefix (e.g. 10.15252)
+        schema:
+          type: string
+        example: '10.15252'
+      - name: interval
+        in: path
+        required: true
+        description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+        schema:
+          type: string
+        example: 2021-06-01/2021-06-15
+      - name: cursor
+        in: path
+        required: true
+        description: Pagination cursor (0-based start position)
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      responses:
+        '200':
+          description: Successful response with publisher article metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublisherArticleResponse'
+      tags:
+      - Publisher
+components:
+  schemas:
+    PublisherArticleResponse:
+      type: object
+      description: Response from publisher article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublisherArticleMetadata'
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    PublisherArticleMetadata:
+      type: object
+      description: Metadata for an article from a specific publisher
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+        title:
+          type: string
+          description: Title of the article
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published

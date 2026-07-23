@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST Details Sum API
+  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
+
+    '
+  version: 1.0.0
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+- url: https://api.biorxiv.org
+  description: bioRxiv REST API server
+tags:
+- name: Sum
+paths:
+  /sum/{interval}/{format}:
+    get:
+      operationId: getContentSummaryStatistics
+      summary: Get content summary statistics
+      description: 'Returns summary statistics for bioRxiv paper submissions including new and revised paper counts, cumulative totals, aggregated monthly or yearly.
+
+        '
+      parameters:
+      - name: interval
+        in: path
+        required: true
+        description: Aggregation interval (m for monthly, y for yearly)
+        schema:
+          type: string
+          enum:
+          - m
+          - y
+        example: m
+      - name: format
+        in: path
+        required: true
+        description: Response format
+        schema:
+          type: string
+          enum:
+          - json
+          - csv
+          default: json
+        example: json
+      responses:
+        '200':
+          description: Successful response with content summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryStatisticsResponse'
+            text/csv:
+              schema:
+                type: string
+      tags:
+      - Sum
+components:
+  schemas:
+    SummaryStatisticsResponse:
+      type: object
+      description: Response from content summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryStatisticsEntry'
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    SummaryStatisticsEntry:
+      type: object
+      description: Summary statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: 2021-06
+        new_papers:
+          type: integer
+          description: Number of new papers posted
+          example: 4532
+        revised_papers:
+          type: integer
+          description: Number of revised papers posted
+          example: 1204
+        all_papers:
+          type: integer
+          description: Total papers (new + revised)
+          example: 5736
+        new_papers_cumulative:
+          type: integer
+          description: Cumulative total of new papers
+        revised_papers_cumulative:
+          type: integer
+          description: Cumulative total of revised papers
+        all_papers_cumulative:
+          type: integer
+          description: Cumulative total of all papers
