@@ -1,6 +1,18 @@
 name: bioRxiv
 description: Cold Spring Harbor Laboratory preprint server for biology providing a REST API for searching and accessing preprint metadata, full text, and category-filtered biological research. The API enables programmatic access to preprint and published article metadata from bioRxiv and medRxiv repositories.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/biorxiv.png
 url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/apis.yml
 version: "0.19"
 created: "2026-06-13"
@@ -13,32 +25,146 @@ tags:
   - Life Sciences
   - Scientific Publications
 apis:
-  - name: bioRxiv REST API
-    description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://www.biorxiv.org/
-    baseURL: https://api.biorxiv.org
-    tags:
-      - Biology
-      - Preprints
-      - Research
-      - Metadata
-      - Open Access
-    properties:
-      - type: Documentation
-        url: https://api.biorxiv.org/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/openapi.yml
-      - type: Plans
-        url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
-      - type: RateLimits
-        url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
-      - type: FinOps
-        url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
-    contact:
-      - FN: bioRxiv Support
-        url: https://www.biorxiv.org/about-biorxiv
-        email: ""
+- aid: biorxiv:biorxiv-details-api
+  name: bioRxiv Details API
+  description: The Details API from bioRxiv — 2 operation(s) for details.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Details
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-details-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-funder-api
+  name: bioRxiv Funder API
+  description: The Funder API from bioRxiv — 1 operation(s) for funder.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Funder
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-funder-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-pub-api
+  name: bioRxiv Pub API
+  description: The Pub API from bioRxiv — 1 operation(s) for pub.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Pub
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-pub-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-publisher-api
+  name: bioRxiv Publisher API
+  description: The Publisher API from bioRxiv — 1 operation(s) for publisher.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Publisher
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-publisher-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-pubs-api
+  name: bioRxiv Pubs API
+  description: The Pubs API from bioRxiv — 2 operation(s) for pubs.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Pubs
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-pubs-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-sum-api
+  name: bioRxiv Sum API
+  description: The Sum API from bioRxiv — 1 operation(s) for sum.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Sum
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-sum-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
+- aid: biorxiv:biorxiv-usage-api
+  name: bioRxiv Usage API
+  description: The Usage API from bioRxiv — 1 operation(s) for usage.
+  humanURL: https://www.biorxiv.org/
+  baseURL: https://api.biorxiv.org
+  tags:
+  - Usage
+  properties:
+  - type: OpenAPI
+    url: openapi/biorxiv-usage-api-openapi.yml
+  - type: Documentation
+    url: https://api.biorxiv.org/
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/plans/plans.yml
+  - type: RateLimits
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/rate-limits/rate-limits.yml
+  - type: FinOps
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/biorxiv-agentic-access.yml
