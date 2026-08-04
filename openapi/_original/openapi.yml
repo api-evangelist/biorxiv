@@ -1,0 +1,800 @@
+openapi: 3.0.3
+info:
+  title: bioRxiv REST API
+  description: >
+    REST API providing programmatic access to preprint metadata, full text,
+    publication information, and usage statistics for biological research papers
+    posted to bioRxiv and medRxiv. Supports filtering by date range, DOI,
+    subject category, funder, and publisher.
+  version: "1.0.0"
+  contact:
+    name: bioRxiv Support
+    url: https://www.biorxiv.org/about-biorxiv
+  license:
+    name: bioRxiv Terms of Service
+    url: https://www.biorxiv.org/content/about-biorxiv
+servers:
+  - url: https://api.biorxiv.org
+    description: bioRxiv REST API server
+
+paths:
+  /details/{server}/{interval}/{cursor}/{format}:
+    get:
+      operationId: getContentDetails
+      summary: Get preprint content details by date interval
+      description: >
+        Returns metadata for up to 30 preprints from bioRxiv or medRxiv within
+        a specified date range or recent N papers. Supports optional subject
+        category filtering.
+      parameters:
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: interval
+          in: path
+          required: true
+          description: >
+            Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers
+            (e.g. 30), or N days ago (e.g. 7d)
+          schema:
+            type: string
+          example: "2021-06-01/2021-06-15"
+        - name: cursor
+          in: path
+          required: true
+          description: Pagination cursor (0-based start position)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml, html]
+            default: json
+          example: json
+        - name: category
+          in: query
+          required: false
+          description: Optional subject category filter (URL-encoded or underscore-separated)
+          schema:
+            type: string
+          example: neuroscience
+      responses:
+        "200":
+          description: Successful response with preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentDetailsResponse"
+        "400":
+          description: Bad request - invalid parameters
+        "404":
+          description: No results found
+
+  /details/{server}/{doi}/na/{format}:
+    get:
+      operationId: getContentDetailsByDOI
+      summary: Get preprint content details by DOI
+      description: >
+        Returns metadata for a specific preprint identified by its DOI from
+        bioRxiv or medRxiv.
+      parameters:
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: doi
+          in: path
+          required: true
+          description: DOI of the preprint (e.g. 10.1101/339747)
+          schema:
+            type: string
+          example: "10.1101/339747"
+        - name: na
+          in: path
+          required: true
+          description: Literal "na" placeholder for cursor position when querying by DOI
+          schema:
+            type: string
+            enum: [na]
+          example: na
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml, html]
+            default: json
+          example: json
+      responses:
+        "200":
+          description: Successful response with preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContentDetailsResponse"
+        "404":
+          description: DOI not found
+
+  /pubs/{server}/{interval}/{cursor}:
+    get:
+      operationId: getPublishedPreprintDetails
+      summary: Get published preprint details by interval
+      description: >
+        Returns metadata for up to 100 published preprints from bioRxiv or
+        medRxiv within a specified date range. Includes both preprint and
+        publication metadata.
+      parameters:
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: interval
+          in: path
+          required: true
+          description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+          schema:
+            type: string
+          example: "2021-06-01/2021-06-15"
+        - name: cursor
+          in: path
+          required: true
+          description: Pagination cursor (0-based start position)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: format
+          in: query
+          required: false
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+      responses:
+        "200":
+          description: Successful response with published preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishedPreprintResponse"
+        "400":
+          description: Bad request - invalid parameters
+
+  /pubs/{server}/{doi}/na/{format}:
+    get:
+      operationId: getPublishedPreprintByDOI
+      summary: Get published preprint details by DOI
+      description: >
+        Returns metadata for a specific published preprint identified by its
+        DOI from bioRxiv or medRxiv.
+      parameters:
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: doi
+          in: path
+          required: true
+          description: DOI of the preprint
+          schema:
+            type: string
+          example: "10.1101/339747"
+        - name: na
+          in: path
+          required: true
+          description: Literal "na" placeholder
+          schema:
+            type: string
+            enum: [na]
+          example: na
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+          example: json
+      responses:
+        "200":
+          description: Successful response with published preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishedPreprintResponse"
+        "404":
+          description: DOI not found
+
+  /pub/{interval}/{cursor}/{format}:
+    get:
+      operationId: getPublishedArticleDetails
+      summary: Get published article details (bioRxiv only)
+      description: >
+        Returns metadata for up to 100 articles published from bioRxiv preprints
+        within a specified date range. Includes both preprint and published DOIs.
+      parameters:
+        - name: interval
+          in: path
+          required: true
+          description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+          schema:
+            type: string
+          example: "2021-06-01/2021-06-15"
+        - name: cursor
+          in: path
+          required: true
+          description: Pagination cursor (0-based start position)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, csv]
+            default: json
+          example: json
+      responses:
+        "200":
+          description: Successful response with published article metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublishedArticleResponse"
+            text/csv:
+              schema:
+                type: string
+
+  /publisher/{publisherPrefix}/{interval}/{cursor}:
+    get:
+      operationId: getPublisherArticleDetails
+      summary: Get publisher article details
+      description: >
+        Returns metadata for up to 100 articles from a specific publisher
+        identified by their DOI prefix within a given date range.
+      parameters:
+        - name: publisherPrefix
+          in: path
+          required: true
+          description: Publisher DOI prefix (e.g. 10.15252)
+          schema:
+            type: string
+          example: "10.15252"
+        - name: interval
+          in: path
+          required: true
+          description: Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d
+          schema:
+            type: string
+          example: "2021-06-01/2021-06-15"
+        - name: cursor
+          in: path
+          required: true
+          description: Pagination cursor (0-based start position)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+      responses:
+        "200":
+          description: Successful response with publisher article metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PublisherArticleResponse"
+
+  /funder/{server}/{interval}/{funderRorId}/{cursor}/{format}:
+    get:
+      operationId: getFunderFilteredContent
+      summary: Get funder-filtered content
+      description: >
+        Returns metadata for up to 100 preprints from bioRxiv or medRxiv funded
+        by a specific organization identified by their ROR ID within a given
+        date range. Data availability starts from 2025-04-10.
+      parameters:
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: interval
+          in: path
+          required: true
+          description: >
+            Date range (YYYY-MM-DD/YYYY-MM-DD, earliest 2025-04-10), numeric,
+            or numeric+d
+          schema:
+            type: string
+          example: "2025-04-10/2025-06-01"
+        - name: funderRorId
+          in: path
+          required: true
+          description: 9-character ROR identifier for the funding organization
+          schema:
+            type: string
+            pattern: "^[a-z0-9]{9}$"
+          example: "021nxhr62"
+        - name: cursor
+          in: path
+          required: true
+          description: Pagination cursor (0-based start position)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, xml]
+            default: json
+          example: json
+        - name: category
+          in: query
+          required: false
+          description: Optional subject category filter
+          schema:
+            type: string
+          example: neuroscience
+      responses:
+        "200":
+          description: Successful response with funder-filtered preprint metadata
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FunderContentResponse"
+
+  /sum/{interval}/{format}:
+    get:
+      operationId: getContentSummaryStatistics
+      summary: Get content summary statistics
+      description: >
+        Returns summary statistics for bioRxiv paper submissions including
+        new and revised paper counts, cumulative totals, aggregated monthly
+        or yearly.
+      parameters:
+        - name: interval
+          in: path
+          required: true
+          description: Aggregation interval (m for monthly, y for yearly)
+          schema:
+            type: string
+            enum: [m, y]
+          example: m
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, csv]
+            default: json
+          example: json
+      responses:
+        "200":
+          description: Successful response with content summary statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SummaryStatisticsResponse"
+            text/csv:
+              schema:
+                type: string
+
+  /usage/{interval}/{server}/{format}:
+    get:
+      operationId: getUsageSummaryStatistics
+      summary: Get usage summary statistics
+      description: >
+        Returns usage statistics for bioRxiv or medRxiv including abstract
+        views, full-text views, and PDF downloads, aggregated monthly or yearly.
+      parameters:
+        - name: interval
+          in: path
+          required: true
+          description: Aggregation interval (m for monthly, y for yearly)
+          schema:
+            type: string
+            enum: [m, y]
+          example: m
+        - name: server
+          in: path
+          required: true
+          description: Preprint server to query
+          schema:
+            type: string
+            enum: [biorxiv, medrxiv]
+          example: biorxiv
+        - name: format
+          in: path
+          required: true
+          description: Response format
+          schema:
+            type: string
+            enum: [json, csv]
+            default: json
+          example: json
+      responses:
+        "200":
+          description: Successful response with usage statistics
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UsageStatisticsResponse"
+            text/csv:
+              schema:
+                type: string
+
+components:
+  schemas:
+    PreprintMetadata:
+      type: object
+      description: Metadata for a single preprint
+      properties:
+        doi:
+          type: string
+          description: Digital Object Identifier for the preprint
+          example: "10.1101/339747"
+        title:
+          type: string
+          description: Title of the preprint
+          example: "Example Biology Preprint Title"
+        authors:
+          type: string
+          description: Semicolon-separated list of authors
+          example: "Smith, John; Doe, Jane"
+        author_corresponding:
+          type: string
+          description: Corresponding author name
+          example: "Smith, John"
+        author_corresponding_institution:
+          type: string
+          description: Institution of corresponding author
+          example: "University of Example"
+        date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+          example: "2021-06-01"
+        version:
+          type: string
+          description: Version number of the preprint
+          example: "1"
+        type:
+          type: string
+          description: Type of submission (new result, confirmatory result, etc.)
+          example: "new results"
+        license:
+          type: string
+          description: License type
+          example: "cc_by"
+        category:
+          type: string
+          description: Subject category
+          example: "neuroscience"
+        jatsxml:
+          type: string
+          format: uri
+          description: URL to JATS XML full text
+        abstract:
+          type: string
+          description: Abstract of the preprint
+        published:
+          type: string
+          description: Published DOI if the preprint has been published, "NA" if not
+          example: "NA"
+        server:
+          type: string
+          description: Server hosting the preprint (biorxiv or medrxiv)
+          example: "biorxiv"
+
+    ContentDetailsResponse:
+      type: object
+      description: Response from content details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/PreprintMetadata"
+
+    PublishedPreprintMetadata:
+      type: object
+      description: Metadata for a published preprint
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv/medRxiv preprint
+          example: "10.1101/339747"
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+          example: "10.1016/j.cell.2021.05.001"
+        preprint_title:
+          type: string
+          description: Title of the preprint
+        preprint_authors:
+          type: string
+          description: Authors of the preprint
+        preprint_author_corresponding:
+          type: string
+          description: Corresponding author
+        preprint_author_corresponding_institution:
+          type: string
+          description: Institution of corresponding author
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        preprint_doi:
+          type: string
+          description: Preprint DOI (alias of biorxiv_doi)
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
+        published_citation_count:
+          type: integer
+          description: Number of citations the published article has received
+        preprint_platform:
+          type: string
+          description: Platform where preprint was posted (bioRxiv or medRxiv)
+
+    PublishedPreprintResponse:
+      type: object
+      description: Response from published preprint details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/PublishedPreprintMetadata"
+
+    PublishedArticleMetadata:
+      type: object
+      description: Metadata for a published article derived from a bioRxiv preprint
+      properties:
+        preprint_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+          example: "10.1101/339747"
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+          example: "10.1016/j.cell.2021.05.001"
+        title:
+          type: string
+          description: Title of the article
+        category:
+          type: string
+          description: Subject category
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
+
+    PublishedArticleResponse:
+      type: object
+      description: Response from published article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/PublishedArticleMetadata"
+
+    PublisherArticleMetadata:
+      type: object
+      description: Metadata for an article from a specific publisher
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+        title:
+          type: string
+          description: Title of the article
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
+
+    PublisherArticleResponse:
+      type: object
+      description: Response from publisher article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/PublisherArticleMetadata"
+
+    FunderContentResponse:
+      type: object
+      description: Response from funder-filtered content endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/PreprintMetadata"
+
+    SummaryStatisticsEntry:
+      type: object
+      description: Summary statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: "2021-06"
+        new_papers:
+          type: integer
+          description: Number of new papers posted
+          example: 4532
+        revised_papers:
+          type: integer
+          description: Number of revised papers posted
+          example: 1204
+        all_papers:
+          type: integer
+          description: Total papers (new + revised)
+          example: 5736
+        new_papers_cumulative:
+          type: integer
+          description: Cumulative total of new papers
+        revised_papers_cumulative:
+          type: integer
+          description: Cumulative total of revised papers
+        all_papers_cumulative:
+          type: integer
+          description: Cumulative total of all papers
+
+    SummaryStatisticsResponse:
+      type: object
+      description: Response from content summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/SummaryStatisticsEntry"
+
+    UsageStatisticsEntry:
+      type: object
+      description: Usage statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: "2021-06"
+        abstract_views:
+          type: integer
+          description: Number of abstract page views
+          example: 9823451
+        full_text_views:
+          type: integer
+          description: Number of full-text HTML views
+          example: 3241876
+        pdf_downloads:
+          type: integer
+          description: Number of PDF downloads
+          example: 2156432
+        abstract_views_cumulative:
+          type: integer
+          description: Cumulative abstract views
+        full_text_views_cumulative:
+          type: integer
+          description: Cumulative full-text views
+        pdf_downloads_cumulative:
+          type: integer
+          description: Cumulative PDF downloads
+
+    UsageStatisticsResponse:
+      type: object
+      description: Response from usage summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/ResponseMessage"
+        collection:
+          type: array
+          items:
+            $ref: "#/components/schemas/UsageStatisticsEntry"
+
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: "ok"
+        interval:
+          type: string
+          description: The interval queried
+          example: "2021-06-01/2021-06-15"
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342

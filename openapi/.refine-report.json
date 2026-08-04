@@ -1,0 +1,47 @@
+{
+  "provider": "biorxiv",
+  "sources": [
+    "biorxiv-details-api-openapi.yml",
+    "biorxiv-funder-api-openapi.yml",
+    "biorxiv-pub-api-openapi.yml",
+    "biorxiv-publisher-api-openapi.yml",
+    "biorxiv-pubs-api-openapi.yml",
+    "biorxiv-sum-api-openapi.yml",
+    "biorxiv-usage-api-openapi.yml",
+    "openapi.yml"
+  ],
+  "outputs": [
+    "biorxiv-details-api-openapi.yml",
+    "biorxiv-funder-api-openapi.yml",
+    "biorxiv-pub-api-openapi.yml",
+    "biorxiv-publisher-api-openapi.yml",
+    "biorxiv-pubs-api-openapi.yml",
+    "biorxiv-sum-api-openapi.yml",
+    "biorxiv-usage-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "discovered stray spec: openapi.yml",
+    "openapi.yml: tagged GET /details/{server}/{interval}/{cursor}/{format} -> Details",
+    "openapi.yml: tagged GET /details/{server}/{doi}/na/{format} -> Details",
+    "openapi.yml: tagged GET /pubs/{server}/{interval}/{cursor} -> Pubs",
+    "openapi.yml: tagged GET /pubs/{server}/{doi}/na/{format} -> Pubs",
+    "openapi.yml: tagged GET /pub/{interval}/{cursor}/{format} -> Pub",
+    "openapi.yml: tagged GET /publisher/{publisherPrefix}/{interval}/{cursor} -> Publisher",
+    "openapi.yml: tagged GET /funder/{server}/{interval}/{funderRorId}/{cursor}/{format} -> Funder",
+    "openapi.yml: tagged GET /sum/{interval}/{format} -> Sum",
+    "openapi.yml: tagged GET /usage/{interval}/{server}/{format} -> Usage",
+    "openapi.yml: declared missing tag: Details",
+    "openapi.yml: declared missing tag: Funder",
+    "openapi.yml: declared missing tag: Pub",
+    "openapi.yml: declared missing tag: Publisher",
+    "openapi.yml: declared missing tag: Pubs",
+    "openapi.yml: declared missing tag: Sum",
+    "openapi.yml: declared missing tag: Usage"
+  ],
+  "skipped": []
+}
