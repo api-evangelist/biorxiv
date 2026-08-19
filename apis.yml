@@ -1,5 +1,6 @@
 name: bioRxiv
 description: Cold Spring Harbor Laboratory preprint server for biology providing a REST API for searching and accessing preprint metadata, full text, and category-filtered biological research. The API enables programmatic access to preprint and published article metadata from bioRxiv and medRxiv repositories.
+specificationVersion: '0.23'
 accessModel:
   pricing: free
   onboarding: unknown
