@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "a2baaff6-b3e4-4a63-9743-a4a578eb7be5",
+      "name": "Usage",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b7791c1-d990-4c64-ac83-5039c8c3e5e5",
+          "name": "Get usage summary statistics",
+          "request": {
+            "name": "Get usage summary statistics",
+            "description": {
+              "content": "Returns usage statistics for bioRxiv or medRxiv including abstract views, full-text views, and PDF downloads, aggregated monthly or yearly.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "usage",
+                ":interval",
+                ":server",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interval",
+                  "description": "(Required) Aggregation interval (m for monthly, y for yearly)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81ba6a7c-0df4-4a7c-907f-e48d55759a08",
+              "name": "Successful response with usage statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "usage",
+                    ":interval",
+                    ":server",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Aggregation interval (m for monthly, y for yearly)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"month\": \"2021-06\",\n      \"abstract_views\": 9823451,\n      \"full_text_views\": 3241876,\n      \"pdf_downloads\": 2156432,\n      \"abstract_views_cumulative\": 7012,\n      \"full_text_views_cumulative\": 4155,\n      \"pdf_downloads_cumulative\": 3319\n    },\n    {\n      \"month\": \"2021-06\",\n      \"abstract_views\": 9823451,\n      \"full_text_views\": 3241876,\n      \"pdf_downloads\": 2156432,\n      \"abstract_views_cumulative\": 3515,\n      \"full_text_views_cumulative\": 3331,\n      \"pdf_downloads_cumulative\": 3835\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.biorxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5b91bf81-5fa7-4a34-ad02-afb821d5e4ea",
+    "name": "bioRxiv REST Details Usage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.\n\n\nContact Support:\n Name: bioRxiv Support",
+      "type": "text/plain"
+    }
+  }
+}

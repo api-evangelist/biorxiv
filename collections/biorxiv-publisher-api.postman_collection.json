@@ -1,0 +1,152 @@
+{
+  "item": [
+    {
+      "id": "e8618a5a-082a-4a67-8915-fbafc1be0c05",
+      "name": "Publisher",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "68197c54-a9bb-4efe-92e0-9838ca858744",
+          "name": "Get publisher article details",
+          "request": {
+            "name": "Get publisher article details",
+            "description": {
+              "content": "Returns metadata for up to 100 articles from a specific publisher identified by their DOI prefix within a given date range.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "publisher",
+                ":publisherPrefix",
+                ":interval",
+                ":cursor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "publisherPrefix",
+                  "description": "(Required) Publisher DOI prefix (e.g. 10.15252)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interval",
+                  "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "cursor",
+                  "description": "(Required) Pagination cursor (0-based start position)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fb4e1d4-408b-4fd2-a899-7620c5785c1b",
+              "name": "Successful response with publisher article metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "publisher",
+                    ":publisherPrefix",
+                    ":interval",
+                    ":cursor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "publisherPrefix",
+                      "description": "(Required) Publisher DOI prefix (e.g. 10.15252)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"biorxiv_doi\": \"string\",\n      \"published_doi\": \"string\",\n      \"title\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"1951-08-04\",\n      \"published_date\": \"1992-08-10\"\n    },\n    {\n      \"biorxiv_doi\": \"string\",\n      \"published_doi\": \"string\",\n      \"title\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"1980-09-22\",\n      \"published_date\": \"1969-03-10\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.biorxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fc8e6ea3-480b-45db-b16c-00499ea5b466",
+    "name": "bioRxiv REST Details Publisher API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.\n\n\nContact Support:\n Name: bioRxiv Support",
+      "type": "text/plain"
+    }
+  }
+}

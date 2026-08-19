@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Publisher API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publisher",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get publisher article details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/publisher/:publisherPrefix/:interval/:cursor",
+            "params": [
+              {
+                "name": "publisherPrefix",
+                "value": "10.15252",
+                "type": "path",
+                "description": "Publisher DOI prefix (e.g. 10.15252)"
+              },
+              {
+                "name": "interval",
+                "value": "2021-06-01/2021-06-15",
+                "type": "path",
+                "description": "Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+              },
+              {
+                "name": "cursor",
+                "value": "0",
+                "type": "path",
+                "description": "Pagination cursor (0-based start position)"
+              }
+            ]
+          },
+          "docs": "Returns metadata for up to 100 articles from a specific publisher identified by their DOI prefix within a given date range.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

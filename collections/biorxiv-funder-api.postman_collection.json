@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "1c95f323-4b58-4e5f-adc6-3747dd1b09d7",
+      "name": "Funder",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f93770d-0904-4b75-ba88-78b96be44a81",
+          "name": "Get funder-filtered content",
+          "request": {
+            "name": "Get funder-filtered content",
+            "description": {
+              "content": "Returns metadata for up to 100 preprints from bioRxiv or medRxiv funded by a specific organization identified by their ROR ID within a given date range. Data availability starts from 2025-04-10.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "funder",
+                ":server",
+                ":interval",
+                ":funderRorId",
+                ":cursor",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Optional subject category filter"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interval",
+                  "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD, earliest 2025-04-10), numeric, or numeric+d\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "funderRorId",
+                  "description": "(Required) 9-character ROR identifier for the funding organization"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "cursor",
+                  "description": "(Required) Pagination cursor (0-based start position)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8f95ffe-a108-4249-b8f3-ecd7e7e90fa2",
+              "name": "Successful response with funder-filtered preprint metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "funder",
+                    ":server",
+                    ":interval",
+                    ":funderRorId",
+                    ":cursor",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "neuroscience"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD, earliest 2025-04-10), numeric, or numeric+d\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "funderRorId",
+                      "description": "(Required) 9-character ROR identifier for the funding organization"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"https://xTTwaGQHcGptcbwxOzqfDafIiOgyXylv.pxgFs,57RXzvshCJ+vcjJUoJnMWHX2J\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    },\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"http://HEZekjwpFmXYGuiwUGHml.hyhuF0Fuln+C084NvFh9s\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.biorxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ae147a3-7a41-45c0-8546-7accdd19ed00",
+    "name": "bioRxiv REST Details Funder API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.\n\n\nContact Support:\n Name: bioRxiv Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Pubs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pubs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get published preprint details by interval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/pubs/:server/:interval/:cursor",
+            "params": [
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "interval",
+                "value": "2021-06-01/2021-06-15",
+                "type": "path",
+                "description": "Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+              },
+              {
+                "name": "cursor",
+                "value": "0",
+                "type": "path",
+                "description": "Pagination cursor (0-based start position)"
+              },
+              {
+                "name": "format",
+                "value": "",
+                "type": "query",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns metadata for up to 100 published preprints from bioRxiv or medRxiv within a specified date range. Includes both preprint and publication metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Get published preprint details by DOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/pubs/:server/:doi/na/:format",
+            "params": [
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "doi",
+                "value": "10.1101/339747",
+                "type": "path",
+                "description": "DOI of the preprint"
+              },
+              {
+                "name": "na",
+                "value": "na",
+                "type": "path",
+                "description": "Literal \"na\" placeholder"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific published preprint identified by its DOI from bioRxiv or medRxiv.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

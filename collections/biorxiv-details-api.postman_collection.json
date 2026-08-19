@@ -1,0 +1,512 @@
+{
+  "item": [
+    {
+      "id": "c7d62c12-1b32-4ce1-9953-10b2882e1799",
+      "name": "Details",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89f2e316-010c-43ae-8d21-b2220980f519",
+          "name": "Get preprint content details by date interval",
+          "request": {
+            "name": "Get preprint content details by date interval",
+            "description": {
+              "content": "Returns metadata for up to 30 preprints from bioRxiv or medRxiv within a specified date range or recent N papers. Supports optional subject category filtering.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "details",
+                ":server",
+                ":interval",
+                ":cursor",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Optional subject category filter (URL-encoded or underscore-separated)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interval",
+                  "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "cursor",
+                  "description": "(Required) Pagination cursor (0-based start position)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "618ffff9-bd96-46ce-abf0-b46c1fcb84ea",
+              "name": "Successful response with preprint metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details",
+                    ":server",
+                    ":interval",
+                    ":cursor",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "neuroscience"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"http://DwNUWfIlSZRJirTVFSoeDdAkjJZhpnoZD.xxp0X\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    },\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"https://fEPpprXGjPEHPZijZcARNTn.ccuqQjDwij2R05rTtrFh1YxswxI.QESL3NMcoStdQp4q93kG8hJddBjstOiCmkIdKrcaK5kGyda2pJ\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a646d7a-ce7b-4a95-bf21-0bb875640815",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details",
+                    ":server",
+                    ":interval",
+                    ":cursor",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "neuroscience"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e750a3a-1cf1-4abf-9706-4d42b513d50c",
+              "name": "No results found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details",
+                    ":server",
+                    ":interval",
+                    ":cursor",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "neuroscience"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c84b6734-fc08-424a-b904-e07d5d72e894",
+          "name": "Get preprint content details by DOI",
+          "request": {
+            "name": "Get preprint content details by DOI",
+            "description": {
+              "content": "Returns metadata for a specific preprint identified by its DOI from bioRxiv or medRxiv.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "details",
+                ":server",
+                ":doi",
+                "na",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "doi",
+                  "description": "(Required) DOI of the preprint (e.g. 10.1101/339747)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "na",
+                  "description": "(Required) Literal \"na\" placeholder for cursor position when querying by DOI"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4ff01fc-46ff-4a54-b2ce-4c2aed0ec56c",
+              "name": "Successful response with preprint metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details",
+                    ":server",
+                    ":doi",
+                    "na",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doi",
+                      "description": "(Required) DOI of the preprint (e.g. 10.1101/339747)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "na",
+                      "description": "(Required) Literal \"na\" placeholder for cursor position when querying by DOI"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"https://FocWOuQVicKP.owbpt8A2Wx.pChipSnptDGgs4mqAk9S8E4QiwRY.S8UNes.pvrTWq85LCVptqbXGdCsE\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    },\n    {\n      \"doi\": \"10.1101/339747\",\n      \"title\": \"Example Biology Preprint Title\",\n      \"authors\": \"Smith, John; Doe, Jane\",\n      \"author_corresponding\": \"Smith, John\",\n      \"author_corresponding_institution\": \"University of Example\",\n      \"date\": \"2021-06-01\",\n      \"version\": \"1\",\n      \"type\": \"new results\",\n      \"license\": \"cc_by\",\n      \"category\": \"neuroscience\",\n      \"jatsxml\": \"http://NDmzvMGUN.aoxfF9vTI,8OLNEHU\",\n      \"abstract\": \"string\",\n      \"published\": \"NA\",\n      \"server\": \"biorxiv\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab75f8b8-0947-44e4-b824-0c1e92b26265",
+              "name": "DOI not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "details",
+                    ":server",
+                    ":doi",
+                    "na",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doi",
+                      "description": "(Required) DOI of the preprint (e.g. 10.1101/339747)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "na",
+                      "description": "(Required) Literal \"na\" placeholder for cursor position when querying by DOI"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.biorxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "42993a65-9785-4301-a24b-a6644ca6582a",
+    "name": "bioRxiv REST Details API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.\n\n\nContact Support:\n Name: bioRxiv Support",
+      "type": "text/plain"
+    }
+  }
+}

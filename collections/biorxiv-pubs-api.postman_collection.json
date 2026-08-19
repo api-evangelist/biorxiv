@@ -1,0 +1,421 @@
+{
+  "item": [
+    {
+      "id": "158bdfe6-d20b-43eb-9f77-dee21c3a8fb4",
+      "name": "Pubs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a88dfb1-15f4-4785-a734-bbca1da74ab8",
+          "name": "Get published preprint details by interval",
+          "request": {
+            "name": "Get published preprint details by interval",
+            "description": {
+              "content": "Returns metadata for up to 100 published preprints from bioRxiv or medRxiv within a specified date range. Includes both preprint and publication metadata.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pubs",
+                ":server",
+                ":interval",
+                ":cursor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "format",
+                  "value": "json",
+                  "description": "Response format"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "interval",
+                  "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "0",
+                  "key": "cursor",
+                  "description": "(Required) Pagination cursor (0-based start position)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60f229cc-4076-416c-a0d5-48fb9442a446",
+              "name": "Successful response with published preprint metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pubs",
+                    ":server",
+                    ":interval",
+                    ":cursor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"biorxiv_doi\": \"10.1101/339747\",\n      \"published_doi\": \"10.1016/j.cell.2021.05.001\",\n      \"preprint_title\": \"string\",\n      \"preprint_authors\": \"string\",\n      \"preprint_author_corresponding\": \"string\",\n      \"preprint_author_corresponding_institution\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"1979-04-15\",\n      \"preprint_doi\": \"string\",\n      \"published_date\": \"1976-07-23\",\n      \"published_citation_count\": 2509,\n      \"preprint_platform\": \"string\"\n    },\n    {\n      \"biorxiv_doi\": \"10.1101/339747\",\n      \"published_doi\": \"10.1016/j.cell.2021.05.001\",\n      \"preprint_title\": \"string\",\n      \"preprint_authors\": \"string\",\n      \"preprint_author_corresponding\": \"string\",\n      \"preprint_author_corresponding_institution\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"2006-04-27\",\n      \"preprint_doi\": \"string\",\n      \"published_date\": \"1981-01-08\",\n      \"published_citation_count\": 2791,\n      \"preprint_platform\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a5c07e-0eef-447a-b3af-182c5c8ec37e",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pubs",
+                    ":server",
+                    ":interval",
+                    ":cursor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "interval",
+                      "description": "(Required) Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "0",
+                      "key": "cursor",
+                      "description": "(Required) Pagination cursor (0-based start position)"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "743e2c27-11e3-4a82-ad9f-f95d92fc6da5",
+          "name": "Get published preprint details by DOI",
+          "request": {
+            "name": "Get published preprint details by DOI",
+            "description": {
+              "content": "Returns metadata for a specific published preprint identified by its DOI from bioRxiv or medRxiv.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pubs",
+                ":server",
+                ":doi",
+                "na",
+                ":format"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "server",
+                  "description": "(Required) Preprint server to query"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "doi",
+                  "description": "(Required) DOI of the preprint"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "na",
+                  "description": "(Required) Literal \"na\" placeholder"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "json",
+                  "key": "format",
+                  "description": "(Required) Response format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "870ec884-a675-4319-86a2-45a30d2e0de7",
+              "name": "Successful response with published preprint metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pubs",
+                    ":server",
+                    ":doi",
+                    "na",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doi",
+                      "description": "(Required) DOI of the preprint"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "na",
+                      "description": "(Required) Literal \"na\" placeholder"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    },\n    {\n      \"status\": \"ok\",\n      \"interval\": \"2021-06-01/2021-06-15\",\n      \"cursor\": 0,\n      \"count\": 30,\n      \"total\": 342\n    }\n  ],\n  \"collection\": [\n    {\n      \"biorxiv_doi\": \"10.1101/339747\",\n      \"published_doi\": \"10.1016/j.cell.2021.05.001\",\n      \"preprint_title\": \"string\",\n      \"preprint_authors\": \"string\",\n      \"preprint_author_corresponding\": \"string\",\n      \"preprint_author_corresponding_institution\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"1980-05-18\",\n      \"preprint_doi\": \"string\",\n      \"published_date\": \"1977-11-12\",\n      \"published_citation_count\": 2344,\n      \"preprint_platform\": \"string\"\n    },\n    {\n      \"biorxiv_doi\": \"10.1101/339747\",\n      \"published_doi\": \"10.1016/j.cell.2021.05.001\",\n      \"preprint_title\": \"string\",\n      \"preprint_authors\": \"string\",\n      \"preprint_author_corresponding\": \"string\",\n      \"preprint_author_corresponding_institution\": \"string\",\n      \"preprint_category\": \"string\",\n      \"preprint_date\": \"1948-01-16\",\n      \"preprint_doi\": \"string\",\n      \"published_date\": \"1992-11-13\",\n      \"published_citation_count\": 8296,\n      \"preprint_platform\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "012a9bc5-7272-4081-a154-ac603b8baa39",
+              "name": "DOI not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pubs",
+                    ":server",
+                    ":doi",
+                    "na",
+                    ":format"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "server",
+                      "description": "(Required) Preprint server to query"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "doi",
+                      "description": "(Required) DOI of the preprint"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "na",
+                      "description": "(Required) Literal \"na\" placeholder"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "json",
+                      "key": "format",
+                      "description": "(Required) Response format"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.biorxiv.org",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "7a4fb788-483a-42b9-921b-5f131b17d04e",
+    "name": "bioRxiv REST Details Pubs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.\n\n\nContact Support:\n Name: bioRxiv Support",
+      "type": "text/plain"
+    }
+  }
+}

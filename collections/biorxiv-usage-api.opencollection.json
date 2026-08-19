@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Usage API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get usage summary statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/usage/:interval/:server/:format",
+            "params": [
+              {
+                "name": "interval",
+                "value": "m",
+                "type": "path",
+                "description": "Aggregation interval (m for monthly, y for yearly)"
+              },
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns usage statistics for bioRxiv or medRxiv including abstract views, full-text views, and PDF downloads, aggregated monthly or yearly.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

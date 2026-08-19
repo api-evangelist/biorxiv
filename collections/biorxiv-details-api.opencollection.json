@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Details",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get preprint content details by date interval",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/details/:server/:interval/:cursor/:format",
+            "params": [
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "interval",
+                "value": "2021-06-01/2021-06-15",
+                "type": "path",
+                "description": "Date range (YYYY-MM-DD/YYYY-MM-DD), numeric count of recent papers (e.g. 30), or N days ago (e.g. 7d)\n"
+              },
+              {
+                "name": "cursor",
+                "value": "0",
+                "type": "path",
+                "description": "Pagination cursor (0-based start position)"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              },
+              {
+                "name": "category",
+                "value": "neuroscience",
+                "type": "query",
+                "description": "Optional subject category filter (URL-encoded or underscore-separated)"
+              }
+            ]
+          },
+          "docs": "Returns metadata for up to 30 preprints from bioRxiv or medRxiv within a specified date range or recent N papers. Supports optional subject category filtering.\n"
+        },
+        {
+          "info": {
+            "name": "Get preprint content details by DOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/details/:server/:doi/na/:format",
+            "params": [
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "doi",
+                "value": "10.1101/339747",
+                "type": "path",
+                "description": "DOI of the preprint (e.g. 10.1101/339747)"
+              },
+              {
+                "name": "na",
+                "value": "na",
+                "type": "path",
+                "description": "Literal \"na\" placeholder for cursor position when querying by DOI"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific preprint identified by its DOI from bioRxiv or medRxiv.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

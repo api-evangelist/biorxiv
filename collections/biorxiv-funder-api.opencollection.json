@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Funder API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Funder",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get funder-filtered content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/funder/:server/:interval/:funderRorId/:cursor/:format",
+            "params": [
+              {
+                "name": "server",
+                "value": "biorxiv",
+                "type": "path",
+                "description": "Preprint server to query"
+              },
+              {
+                "name": "interval",
+                "value": "2025-04-10/2025-06-01",
+                "type": "path",
+                "description": "Date range (YYYY-MM-DD/YYYY-MM-DD, earliest 2025-04-10), numeric, or numeric+d\n"
+              },
+              {
+                "name": "funderRorId",
+                "value": "021nxhr62",
+                "type": "path",
+                "description": "9-character ROR identifier for the funding organization"
+              },
+              {
+                "name": "cursor",
+                "value": "0",
+                "type": "path",
+                "description": "Pagination cursor (0-based start position)"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              },
+              {
+                "name": "category",
+                "value": "neuroscience",
+                "type": "query",
+                "description": "Optional subject category filter"
+              }
+            ]
+          },
+          "docs": "Returns metadata for up to 100 preprints from bioRxiv or medRxiv funded by a specific organization identified by their ROR ID within a given date range. Data availability starts from 2025-04-10.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Pub API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pub",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get published article details (bioRxiv only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/pub/:interval/:cursor/:format",
+            "params": [
+              {
+                "name": "interval",
+                "value": "2021-06-01/2021-06-15",
+                "type": "path",
+                "description": "Date range (YYYY-MM-DD/YYYY-MM-DD), numeric, or numeric+d"
+              },
+              {
+                "name": "cursor",
+                "value": "0",
+                "type": "path",
+                "description": "Pagination cursor (0-based start position)"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns metadata for up to 100 articles published from bioRxiv preprints within a specified date range. Includes both preprint and published DOIs.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "bioRxiv REST Details Sum API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sum",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get content summary statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.biorxiv.org/sum/:interval/:format",
+            "params": [
+              {
+                "name": "interval",
+                "value": "m",
+                "type": "path",
+                "description": "Aggregation interval (m for monthly, y for yearly)"
+              },
+              {
+                "name": "format",
+                "value": "json",
+                "type": "path",
+                "description": "Response format"
+              }
+            ]
+          },
+          "docs": "Returns summary statistics for bioRxiv paper submissions including new and revised paper counts, cumulative totals, aggregated monthly or yearly.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
