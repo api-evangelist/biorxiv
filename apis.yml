@@ -92,6 +92,8 @@ apis:
   humanURL: https://www.biorxiv.org/
   baseURL: https://api.biorxiv.org
   tags:
+  - Publishers
+  tags_raw:
   - Publisher
   properties:
   - type: OpenAPI
