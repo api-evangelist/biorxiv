@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bioRxiv REST Details Usage API
-  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-
-    '
+  title: bioRxiv REST Usage API
+  description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
   version: 1.0.0
   contact:
     name: bioRxiv Support
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getUsageSummaryStatistics
       summary: Get usage summary statistics
-      description: 'Returns usage statistics for bioRxiv or medRxiv including abstract views, full-text views, and PDF downloads, aggregated monthly or yearly.
-
-        '
+      description: Returns usage statistics for bioRxiv or medRxiv including abstract views, full-text views, and PDF downloads, aggregated monthly or yearly.
       parameters:
       - name: interval
         in: path
@@ -70,6 +66,35 @@ paths:
       - Usage
 components:
   schemas:
+    UsageStatisticsEntry:
+      type: object
+      description: Usage statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: 2021-06
+        abstract_views:
+          type: integer
+          description: Number of abstract page views
+          example: 9823451
+        full_text_views:
+          type: integer
+          description: Number of full-text HTML views
+          example: 3241876
+        pdf_downloads:
+          type: integer
+          description: Number of PDF downloads
+          example: 2156432
+        abstract_views_cumulative:
+          type: integer
+          description: Cumulative abstract views
+        full_text_views_cumulative:
+          type: integer
+          description: Cumulative full-text views
+        pdf_downloads_cumulative:
+          type: integer
+          description: Cumulative PDF downloads
     UsageStatisticsResponse:
       type: object
       description: Response from usage summary statistics endpoint
@@ -106,32 +131,3 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    UsageStatisticsEntry:
-      type: object
-      description: Usage statistics for a time period
-      properties:
-        month:
-          type: string
-          description: Month or year of the statistics
-          example: 2021-06
-        abstract_views:
-          type: integer
-          description: Number of abstract page views
-          example: 9823451
-        full_text_views:
-          type: integer
-          description: Number of full-text HTML views
-          example: 3241876
-        pdf_downloads:
-          type: integer
-          description: Number of PDF downloads
-          example: 2156432
-        abstract_views_cumulative:
-          type: integer
-          description: Cumulative abstract views
-        full_text_views_cumulative:
-          type: integer
-          description: Cumulative full-text views
-        pdf_downloads_cumulative:
-          type: integer
-          description: Cumulative PDF downloads

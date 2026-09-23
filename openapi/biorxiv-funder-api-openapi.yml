@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bioRxiv REST Details Funder API
-  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-
-    '
+  title: bioRxiv REST Funder API
+  description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
   version: 1.0.0
   contact:
     name: bioRxiv Support
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getFunderFilteredContent
       summary: Get funder-filtered content
-      description: 'Returns metadata for up to 100 preprints from bioRxiv or medRxiv funded by a specific organization identified by their ROR ID within a given date range. Data availability starts from 2025-04-10.
-
-        '
+      description: Returns metadata for up to 100 preprints from bioRxiv or medRxiv funded by a specific organization identified by their ROR ID within a given date range. Data availability starts from 2025-04-10.
       parameters:
       - name: server
         in: path
@@ -90,18 +86,6 @@ paths:
       - Funder
 components:
   schemas:
-    FunderContentResponse:
-      type: object
-      description: Response from funder-filtered content endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PreprintMetadata'
     PreprintMetadata:
       type: object
       description: Metadata for a single preprint
@@ -186,63 +170,15 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    PreprintMetadata_2:
+    FunderContentResponse:
       type: object
-      description: Metadata for a single preprint
+      description: Response from funder-filtered content endpoint
       properties:
-        doi:
-          type: string
-          description: Digital Object Identifier for the preprint
-          example: 10.1101/339747
-        title:
-          type: string
-          description: Title of the preprint
-          example: Example Biology Preprint Title
-        authors:
-          type: string
-          description: Semicolon-separated list of authors
-          example: Smith, John; Doe, Jane
-        author_corresponding:
-          type: string
-          description: Corresponding author name
-          example: Smith, John
-        author_corresponding_institution:
-          type: string
-          description: Institution of corresponding author
-          example: University of Example
-        date:
-          type: string
-          format: date
-          description: Date the preprint was posted
-          example: '2021-06-01'
-        version:
-          type: string
-          description: Version number of the preprint
-          example: '1'
-        type:
-          type: string
-          description: Type of submission (new result, confirmatory result, etc.)
-          example: new results
-        license:
-          type: string
-          description: License type
-          example: cc_by
-        category:
-          type: string
-          description: Subject category
-          example: neuroscience
-        jatsxml:
-          type: string
-          format: uri
-          description: URL to JATS XML full text
-        abstract:
-          type: string
-          description: Abstract of the preprint
-        published:
-          type: string
-          description: Published DOI if the preprint has been published, "NA" if not
-          example: 10.1016/j.cell.2021.05.001
-        server:
-          type: string
-          description: Server hosting the preprint (biorxiv or medrxiv)
-          example: biorxiv
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PreprintMetadata'

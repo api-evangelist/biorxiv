@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bioRxiv REST Details Publisher API
-  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-
-    '
+  title: bioRxiv REST Publisher API
+  description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
   version: 1.0.0
   contact:
     name: bioRxiv Support
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getPublisherArticleDetails
       summary: Get publisher article details
-      description: 'Returns metadata for up to 100 articles from a specific publisher identified by their DOI prefix within a given date range.
-
-        '
+      description: Returns metadata for up to 100 articles from a specific publisher identified by their DOI prefix within a given date range.
       parameters:
       - name: publisherPrefix
         in: path
@@ -59,6 +55,30 @@ paths:
       - Publisher
 components:
   schemas:
+    PublisherArticleMetadata:
+      type: object
+      description: Metadata for an article from a specific publisher
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+        title:
+          type: string
+          description: Title of the article
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
     PublisherArticleResponse:
       type: object
       description: Response from publisher article details endpoint
@@ -95,27 +115,3 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    PublisherArticleMetadata:
-      type: object
-      description: Metadata for an article from a specific publisher
-      properties:
-        biorxiv_doi:
-          type: string
-          description: DOI of the bioRxiv preprint
-        published_doi:
-          type: string
-          description: DOI of the published journal article
-        title:
-          type: string
-          description: Title of the article
-        preprint_category:
-          type: string
-          description: Subject category of the preprint
-        preprint_date:
-          type: string
-          format: date
-          description: Date the preprint was posted
-        published_date:
-          type: string
-          format: date
-          description: Date the article was published

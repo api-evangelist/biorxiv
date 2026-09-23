@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bioRxiv REST Details Pubs API
-  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-
-    '
+  title: bioRxiv REST Pubs API
+  description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
   version: 1.0.0
   contact:
     name: bioRxiv Support
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getPublishedPreprintDetails
       summary: Get published preprint details by interval
-      description: 'Returns metadata for up to 100 published preprints from bioRxiv or medRxiv within a specified date range. Includes both preprint and publication metadata.
-
-        '
+      description: Returns metadata for up to 100 published preprints from bioRxiv or medRxiv within a specified date range. Includes both preprint and publication metadata.
       parameters:
       - name: server
         in: path
@@ -76,9 +72,7 @@ paths:
     get:
       operationId: getPublishedPreprintByDOI
       summary: Get published preprint details by DOI
-      description: 'Returns metadata for a specific published preprint identified by its DOI from bioRxiv or medRxiv.
-
-        '
+      description: Returns metadata for a specific published preprint identified by its DOI from bioRxiv or medRxiv.
       parameters:
       - name: server
         in: path
@@ -130,30 +124,6 @@ paths:
       - Pubs
 components:
   schemas:
-    ResponseMessage:
-      type: object
-      description: Status message included in API responses
-      properties:
-        status:
-          type: string
-          description: Status of the request (ok, error)
-          example: ok
-        interval:
-          type: string
-          description: The interval queried
-          example: 2021-06-01/2021-06-15
-        cursor:
-          type: integer
-          description: Current cursor position
-          example: 0
-        count:
-          type: integer
-          description: Number of results returned
-          example: 30
-        total:
-          type: integer
-          description: Total number of results available
-          example: 342
     PublishedPreprintMetadata:
       type: object
       description: Metadata for a published preprint
@@ -210,3 +180,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PublishedPreprintMetadata'
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342

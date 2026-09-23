@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: bioRxiv REST Details Sum API
-  description: 'REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
-
-    '
+  title: bioRxiv REST Sum API
+  description: REST API providing programmatic access to preprint metadata, full text, publication information, and usage statistics for biological research papers posted to bioRxiv and medRxiv. Supports filtering by date range, DOI, subject category, funder, and publisher.
   version: 1.0.0
   contact:
     name: bioRxiv Support
@@ -21,9 +19,7 @@ paths:
     get:
       operationId: getContentSummaryStatistics
       summary: Get content summary statistics
-      description: 'Returns summary statistics for bioRxiv paper submissions including new and revised paper counts, cumulative totals, aggregated monthly or yearly.
-
-        '
+      description: Returns summary statistics for bioRxiv paper submissions including new and revised paper counts, cumulative totals, aggregated monthly or yearly.
       parameters:
       - name: interval
         in: path
@@ -60,6 +56,35 @@ paths:
       - Sum
 components:
   schemas:
+    SummaryStatisticsEntry:
+      type: object
+      description: Summary statistics for a time period
+      properties:
+        month:
+          type: string
+          description: Month or year of the statistics
+          example: 2021-06
+        new_papers:
+          type: integer
+          description: Number of new papers posted
+          example: 4532
+        revised_papers:
+          type: integer
+          description: Number of revised papers posted
+          example: 1204
+        all_papers:
+          type: integer
+          description: Total papers (new + revised)
+          example: 5736
+        new_papers_cumulative:
+          type: integer
+          description: Cumulative total of new papers
+        revised_papers_cumulative:
+          type: integer
+          description: Cumulative total of revised papers
+        all_papers_cumulative:
+          type: integer
+          description: Cumulative total of all papers
     SummaryStatisticsResponse:
       type: object
       description: Response from content summary statistics endpoint
@@ -96,32 +121,3 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    SummaryStatisticsEntry:
-      type: object
-      description: Summary statistics for a time period
-      properties:
-        month:
-          type: string
-          description: Month or year of the statistics
-          example: 2021-06
-        new_papers:
-          type: integer
-          description: Number of new papers posted
-          example: 4532
-        revised_papers:
-          type: integer
-          description: Number of revised papers posted
-          example: 1204
-        all_papers:
-          type: integer
-          description: Total papers (new + revised)
-          example: 5736
-        new_papers_cumulative:
-          type: integer
-          description: Cumulative total of new papers
-        revised_papers_cumulative:
-          type: integer
-          description: Cumulative total of revised papers
-        all_papers_cumulative:
-          type: integer
-          description: Cumulative total of all papers
