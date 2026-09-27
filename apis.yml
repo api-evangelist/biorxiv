@@ -37,6 +37,7 @@ tags:
   - Open Access
   - Life Sciences
   - Scientific Publications
+  - Research Repository
 apis:
 - aid: biorxiv:biorxiv-details-api
   name: bioRxiv Details API

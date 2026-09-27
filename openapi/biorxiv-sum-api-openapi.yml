@@ -85,18 +85,6 @@ components:
         all_papers_cumulative:
           type: integer
           description: Cumulative total of all papers
-    SummaryStatisticsResponse:
-      type: object
-      description: Response from content summary statistics endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/SummaryStatisticsEntry'
     ResponseMessage:
       type: object
       description: Status message included in API responses
@@ -121,3 +109,15 @@ components:
           type: integer
           description: Total number of results available
           example: 342
+    SummaryStatisticsResponse:
+      type: object
+      description: Response from content summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryStatisticsEntry'

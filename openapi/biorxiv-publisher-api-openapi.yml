@@ -55,42 +55,6 @@ paths:
       - Publisher
 components:
   schemas:
-    PublisherArticleMetadata:
-      type: object
-      description: Metadata for an article from a specific publisher
-      properties:
-        biorxiv_doi:
-          type: string
-          description: DOI of the bioRxiv preprint
-        published_doi:
-          type: string
-          description: DOI of the published journal article
-        title:
-          type: string
-          description: Title of the article
-        preprint_category:
-          type: string
-          description: Subject category of the preprint
-        preprint_date:
-          type: string
-          format: date
-          description: Date the preprint was posted
-        published_date:
-          type: string
-          format: date
-          description: Date the article was published
-    PublisherArticleResponse:
-      type: object
-      description: Response from publisher article details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublisherArticleMetadata'
     ResponseMessage:
       type: object
       description: Status message included in API responses
@@ -115,3 +79,39 @@ components:
           type: integer
           description: Total number of results available
           example: 342
+    PublisherArticleResponse:
+      type: object
+      description: Response from publisher article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublisherArticleMetadata'
+    PublisherArticleMetadata:
+      type: object
+      description: Metadata for an article from a specific publisher
+      properties:
+        biorxiv_doi:
+          type: string
+          description: DOI of the bioRxiv preprint
+        published_doi:
+          type: string
+          description: DOI of the published journal article
+        title:
+          type: string
+          description: Title of the article
+        preprint_category:
+          type: string
+          description: Subject category of the preprint
+        preprint_date:
+          type: string
+          format: date
+          description: Date the preprint was posted
+        published_date:
+          type: string
+          format: date
+          description: Date the article was published
