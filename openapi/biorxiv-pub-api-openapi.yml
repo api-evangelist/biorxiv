@@ -62,42 +62,6 @@ paths:
       - Pub
 components:
   schemas:
-    ResponseMessage:
-      type: object
-      description: Status message included in API responses
-      properties:
-        status:
-          type: string
-          description: Status of the request (ok, error)
-          example: ok
-        interval:
-          type: string
-          description: The interval queried
-          example: 2021-06-01/2021-06-15
-        cursor:
-          type: integer
-          description: Current cursor position
-          example: 0
-        count:
-          type: integer
-          description: Number of results returned
-          example: 30
-        total:
-          type: integer
-          description: Total number of results available
-          example: 342
-    PublishedArticleResponse:
-      type: object
-      description: Response from published article details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublishedArticleMetadata'
     PublishedArticleMetadata:
       type: object
       description: Metadata for a published article derived from a bioRxiv preprint
@@ -124,3 +88,39 @@ components:
           type: string
           format: date
           description: Date the article was published
+    PublishedArticleResponse:
+      type: object
+      description: Response from published article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedArticleMetadata'
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342

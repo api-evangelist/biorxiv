@@ -66,6 +66,18 @@ paths:
       - Usage
 components:
   schemas:
+    UsageStatisticsResponse:
+      type: object
+      description: Response from usage summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/UsageStatisticsEntry'
     ResponseMessage:
       type: object
       description: Status message included in API responses
@@ -119,15 +131,3 @@ components:
         pdf_downloads_cumulative:
           type: integer
           description: Cumulative PDF downloads
-    UsageStatisticsResponse:
-      type: object
-      description: Response from usage summary statistics endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/UsageStatisticsEntry'

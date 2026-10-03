@@ -124,6 +124,18 @@ paths:
       - Pubs
 components:
   schemas:
+    PublishedPreprintResponse:
+      type: object
+      description: Response from published preprint details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedPreprintMetadata'
     ResponseMessage:
       type: object
       description: Status message included in API responses
@@ -192,15 +204,3 @@ components:
         preprint_platform:
           type: string
           description: Platform where preprint was posted (bioRxiv or medRxiv)
-    PublishedPreprintResponse:
-      type: object
-      description: Response from published preprint details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublishedPreprintMetadata'
