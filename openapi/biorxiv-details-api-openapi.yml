@@ -138,30 +138,6 @@ paths:
       - Details
 components:
   schemas:
-    ResponseMessage:
-      type: object
-      description: Status message included in API responses
-      properties:
-        status:
-          type: string
-          description: Status of the request (ok, error)
-          example: ok
-        interval:
-          type: string
-          description: The interval queried
-          example: 2021-06-01/2021-06-15
-        cursor:
-          type: integer
-          description: Current cursor position
-          example: 0
-        count:
-          type: integer
-          description: Number of results returned
-          example: 30
-        total:
-          type: integer
-          description: Total number of results available
-          example: 342
     ContentDetailsResponse:
       type: object
       description: Response from content details endpoint
@@ -234,3 +210,27 @@ components:
           type: string
           description: Server hosting the preprint (biorxiv or medrxiv)
           example: biorxiv
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342

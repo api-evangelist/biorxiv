@@ -79,18 +79,6 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    PublisherArticleResponse:
-      type: object
-      description: Response from publisher article details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublisherArticleMetadata'
     PublisherArticleMetadata:
       type: object
       description: Metadata for an article from a specific publisher
@@ -115,3 +103,15 @@ components:
           type: string
           format: date
           description: Date the article was published
+    PublisherArticleResponse:
+      type: object
+      description: Response from publisher article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublisherArticleMetadata'

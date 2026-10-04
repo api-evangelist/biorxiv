@@ -56,6 +56,18 @@ paths:
       - Sum
 components:
   schemas:
+    SummaryStatisticsResponse:
+      type: object
+      description: Response from content summary statistics endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/SummaryStatisticsEntry'
     SummaryStatisticsEntry:
       type: object
       description: Summary statistics for a time period
@@ -109,15 +121,3 @@ components:
           type: integer
           description: Total number of results available
           example: 342
-    SummaryStatisticsResponse:
-      type: object
-      description: Response from content summary statistics endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/SummaryStatisticsEntry'

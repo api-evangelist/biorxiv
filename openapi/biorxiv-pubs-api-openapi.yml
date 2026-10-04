@@ -124,42 +124,6 @@ paths:
       - Pubs
 components:
   schemas:
-    PublishedPreprintResponse:
-      type: object
-      description: Response from published preprint details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublishedPreprintMetadata'
-    ResponseMessage:
-      type: object
-      description: Status message included in API responses
-      properties:
-        status:
-          type: string
-          description: Status of the request (ok, error)
-          example: ok
-        interval:
-          type: string
-          description: The interval queried
-          example: 2021-06-01/2021-06-15
-        cursor:
-          type: integer
-          description: Current cursor position
-          example: 0
-        count:
-          type: integer
-          description: Number of results returned
-          example: 30
-        total:
-          type: integer
-          description: Total number of results available
-          example: 342
     PublishedPreprintMetadata:
       type: object
       description: Metadata for a published preprint
@@ -204,3 +168,39 @@ components:
         preprint_platform:
           type: string
           description: Platform where preprint was posted (bioRxiv or medRxiv)
+    ResponseMessage:
+      type: object
+      description: Status message included in API responses
+      properties:
+        status:
+          type: string
+          description: Status of the request (ok, error)
+          example: ok
+        interval:
+          type: string
+          description: The interval queried
+          example: 2021-06-01/2021-06-15
+        cursor:
+          type: integer
+          description: Current cursor position
+          example: 0
+        count:
+          type: integer
+          description: Number of results returned
+          example: 30
+        total:
+          type: integer
+          description: Total number of results available
+          example: 342
+    PublishedPreprintResponse:
+      type: object
+      description: Response from published preprint details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedPreprintMetadata'
