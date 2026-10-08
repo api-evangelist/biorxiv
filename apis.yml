@@ -182,6 +182,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/biorxiv/refs/heads/main/finops/finops.yml
 common:
+  - type: Plans
+    url: plans/plans.yml
+  - type: RateLimits
+    url: rate-limits/rate-limits.yml
+  - type: FinOps
+    url: finops/finops.yml
   - type: AgenticAccess
     url: agentic-access/biorxiv-agentic-access.yml
   - type: DomainSecurity
