@@ -62,6 +62,18 @@ paths:
       - Pub
 components:
   schemas:
+    PublishedArticleResponse:
+      type: object
+      description: Response from published article details endpoint
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResponseMessage'
+        collection:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublishedArticleMetadata'
     PublishedArticleMetadata:
       type: object
       description: Metadata for a published article derived from a bioRxiv preprint
@@ -88,18 +100,6 @@ components:
           type: string
           format: date
           description: Date the article was published
-    PublishedArticleResponse:
-      type: object
-      description: Response from published article details endpoint
-      properties:
-        messages:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResponseMessage'
-        collection:
-          type: array
-          items:
-            $ref: '#/components/schemas/PublishedArticleMetadata'
     ResponseMessage:
       type: object
       description: Status message included in API responses
