@@ -64,55 +64,155 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-bioRxiv is a free preprint server for the biological sciences operated by Cold Spring Harbor Laboratory. It provides open access to unpublished manuscripts prior to peer review, enabling rapid dissemination of scientific findings. The platform covers all areas of biology and life sciences.
+Cold Spring Harbor Laboratory preprint server for biology providing a REST API for searching and accessing preprint metadata, full text, and category-filtered biological research. The API enables programmatic access to preprint and published article metadata from bioRxiv and medRxiv repositories.
 
-## REST API
+**Areas:** Biology · Preprints · Research · Open Access · Life Sciences · Scientific Publications · Research Repository
 
-The bioRxiv REST API (`https://api.biorxiv.org`) provides programmatic access to preprint metadata, full text links, publication status, and usage statistics for papers posted to bioRxiv and medRxiv. No authentication or API key is required.
+## bioRxiv on APIs.io
 
-### Key Endpoints
+Everything profiled for bioRxiv is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/biorxiv/](https://apis.io/providers/biorxiv/)** — or go straight to one of the APIs or properties below.
 
-| Endpoint | Description |
-|----------|-------------|
-| `/details/{server}/{interval}/{cursor}/{format}` | Retrieve preprint metadata filtered by date range or DOI |
-| `/pubs/{server}/{doi}/{cursor}/{format}` | Published preprint information |
-| `/publisher/{prefix}/{interval}/{cursor}/{format}` | Articles filtered by publisher DOI prefix |
-| `/funder/{ror_id}/{interval}/{cursor}/{format}` | Articles filtered by funder ROR ID |
-| `/sum/{server}/{interval}/{format}` | Submission and revision count statistics |
-| `/usage/{server}/{interval}/{format}` | Abstract views, full-text views, and PDF downloads |
+### APIs (7)
 
-### Response Format
+- [bioRxiv Details API](https://apis.io/apis/biorxiv/biorxiv-details-api/) — The Details API from bioRxiv — 2 operation(s) for details.
+- [bioRxiv Funder API](https://apis.io/apis/biorxiv/biorxiv-funder-api/) — The Funder API from bioRxiv — 1 operation(s) for funder.
+- [bioRxiv Pub API](https://apis.io/apis/biorxiv/biorxiv-pub-api/) — The Pub API from bioRxiv — 1 operation(s) for pub.
+- [bioRxiv Publisher API](https://apis.io/apis/biorxiv/biorxiv-publisher-api/) — The Publisher API from bioRxiv — 1 operation(s) for publisher.
+- [bioRxiv Pubs API](https://apis.io/apis/biorxiv/biorxiv-pubs-api/) — The Pubs API from bioRxiv — 2 operation(s) for pubs.
+- [bioRxiv Sum API](https://apis.io/apis/biorxiv/biorxiv-sum-api/) — The Sum API from bioRxiv — 1 operation(s) for sum.
+- [bioRxiv Usage API](https://apis.io/apis/biorxiv/biorxiv-usage-api/) — The Usage API from bioRxiv — 1 operation(s) for usage.
 
-All endpoints return JSON by default with two top-level keys:
+### Published properties
 
-- `messages` — request metadata including status, cursor, count, and total records
-- `collection` — array of article objects with title, authors, DOI, date, version, license, category, abstract, and publication status
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Supported Servers
+#### Agentic access (1)
 
-- `biorxiv` — biology preprints
-- `medrxiv` — health sciences preprints
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Output Formats
+- [Biorxiv Agentic Access](https://apis.io/agentic-access/biorxiv/biorxiv-agentic-access/)
 
-- `json` (default)
-- `xml` (OAI-PMH)
-- `html`
-- `csv`
+#### JSON Schema (3)
 
-## Access
+The data models the API reads and writes.
 
-- **Authentication**: None required
-- **Rate Limits**: Not formally documented; responsible use expected
-- **Cost**: Free
-- **License**: Preprint content available under CC0, CC BY, CC BY-NC-ND, or other open licenses depending on the paper
+- [PreprintMetadata](https://apis.io/schemas/biorxiv/preprint-metadata/)
+- [PublishedPreprintMetadata](https://apis.io/schemas/biorxiv/published-preprint/)
+- [StatisticsSchemas](https://apis.io/schemas/biorxiv/statistics/)
 
-## Links
+#### JSON-LD (1)
 
-- Website: https://www.biorxiv.org/
-- API Base URL: https://api.biorxiv.org/
-- About: https://www.biorxiv.org/about-biorxiv
+Linked-data contexts for the provider's vocabulary.
 
-## APIs.json
+- [context Context](https://apis.io/jsonld/biorxiv/context/)
 
-This repository contains an [APIs.json 0.19](https://apisjson.org/) profile for bioRxiv maintained by [API Evangelist](https://apievangelist.com/).
+#### Examples (4)
+
+Example requests and responses.
+
+- [Content Details Response](https://apis.io/examples/biorxiv/content-details-response/)
+- [Content Summary Statistics Response](https://apis.io/examples/biorxiv/content-summary-statistics-response/)
+- [Published Preprint Response](https://apis.io/examples/biorxiv/published-preprint-response/)
+- [Usage Statistics Response](https://apis.io/examples/biorxiv/usage-statistics-response/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [bioRxiv REST Details API](https://apis.io/collections/biorxiv/open-biorxiv-details-api/)
+- [bioRxiv REST Details Funder API](https://apis.io/collections/biorxiv/open-biorxiv-funder-api/)
+- [bioRxiv REST Details Pub API](https://apis.io/collections/biorxiv/open-biorxiv-pub-api/)
+- [bioRxiv REST Details Publisher API](https://apis.io/collections/biorxiv/open-biorxiv-publisher-api/)
+- [bioRxiv REST Details Pubs API](https://apis.io/collections/biorxiv/open-biorxiv-pubs-api/)
+- [bioRxiv REST Details Sum API](https://apis.io/collections/biorxiv/open-biorxiv-sum-api/)
+- [bioRxiv REST Details Usage API](https://apis.io/collections/biorxiv/open-biorxiv-usage-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [bioRxiv — jsonschema rules](https://apis.io/rules/biorxiv/biorxiv-jsonschema-spectral-rules/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Biorxiv Domain Security](https://apis.io/security/biorxiv/biorxiv-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Plans](https://apis.io/plans/biorxiv/plans/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Rate Limits](https://apis.io/rate-limits/biorxiv/rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Finops](https://apis.io/finops/biorxiv/finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.biorxiv.org/)
+- [Terms of service](https://www.biorxiv.org/content/about-biorxiv)
+
+## API Evangelist rating
+
+**Kin Score 26.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 54.1 |
+| Contract governance | 9.8 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 9.5 |
+| Access clarity | 15.8 |
+
+**Agent readiness 25.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.7** — Health
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/biorxiv/](https://apis.io/providers/biorxiv/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for bioRxiv: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/biorxiv/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
